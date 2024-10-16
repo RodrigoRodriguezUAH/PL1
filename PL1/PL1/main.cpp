@@ -1,9 +1,13 @@
 // #include <Gestor.hpp>
 #include <iostream>
+#include "Proceso.hpp"
 using namespace std;
 
 int main(int argc, char** argv)
 {
+	
+	
+	
 	// Gestor gestor;
 	char opcion;
 

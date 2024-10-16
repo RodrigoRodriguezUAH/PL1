@@ -93,6 +93,12 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
-    <File Name="main.cpp"/>
+    <VirtualDirectory Name="Source Files">
+      <File Name="Proceso.cpp"/>
+      <File Name="main.cpp"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="Header Files">
+      <File Name="Proceso.hpp"/>
+    </VirtualDirectory>
   </VirtualDirectory>
 </CodeLite_Project>

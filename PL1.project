@@ -2,6 +2,12 @@
 <CodeLite_Project Name="PL1" Version="11000" InternalType="">
   <VirtualDirectory Name="PL1">
     <VirtualDirectory Name="PL1">
+      <VirtualDirectory Name="Header Files">
+        <File Name="PL1/PL1/Proceso.hpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="Source Files">
+        <File Name="PL1/PL1/Proceso.cpp"/>
+      </VirtualDirectory>
       <File Name="PL1/PL1/main.cpp"/>
     </VirtualDirectory>
   </VirtualDirectory>

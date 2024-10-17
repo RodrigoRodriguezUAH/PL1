@@ -22,4 +22,7 @@ void Gestor::genera12Procesos(){
 void Gestor::muestraProcesos(){
 	pila.mostrar();
 	}
+	void Gestor::borraProcesosPila(){
+		pila.vaciar();
+		}
 	

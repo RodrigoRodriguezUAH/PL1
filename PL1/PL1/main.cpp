@@ -76,7 +76,7 @@ int main(int argc, char** argv)
 			 gestor.muestraProcesos();
 			break;
 		case 'C':
-			// gestor.borraProcesosPila();
+			 gestor.borraProcesosPila();
 			break;
 		case 'D':
 			// gestor.encolarProcesos();

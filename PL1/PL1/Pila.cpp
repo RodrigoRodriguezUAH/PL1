@@ -48,3 +48,14 @@ Pila::~Pila(){
 		delete aux;
 		}
 	}	
+void Pila::vaciar(){
+	pnodoPila aux;
+	while(ultimo){
+		aux=ultimo;
+		ultimo=ultimo->siguiente;
+		delete aux->proceso;
+		delete aux;
+	}
+	ultimo=nullptr;
+	longitud=0;
+	}

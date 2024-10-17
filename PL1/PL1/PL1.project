@@ -94,6 +94,10 @@
   </Settings>
   <VirtualDirectory Name="src">
     <VirtualDirectory Name="Source Files">
+      <VirtualDirectory Name="Colas">
+        <File Name="NodoCola.cpp"/>
+        <File Name="Cola.cpp"/>
+      </VirtualDirectory>
       <VirtualDirectory Name="Gestor">
         <File Name="Gestor.cpp"/>
       </VirtualDirectory>
@@ -107,6 +111,10 @@
       <File Name="main.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="Header Files">
+      <VirtualDirectory Name="Colas">
+        <File Name="NodoCola.hpp"/>
+        <File Name="Cola.hpp"/>
+      </VirtualDirectory>
       <VirtualDirectory Name="Gestor">
         <File Name="Gestor.hpp"/>
       </VirtualDirectory>

@@ -24,14 +24,14 @@ string Proceso::generar_nombre(){
 	string nombres[10] = {
         "Ana",
         "Luis",
-        "María",
+        "Maria",
         "Pedro",
-        "Sofía",
+        "Sofia",
         "Javier",
-        "Lucía",
+        "Lucia",
         "Carlos",
         "Marta",
-        "Andrés"
+        "Andres"
     };
 	int i=rand()%10;
 	return nombres[i];
@@ -44,9 +44,9 @@ int Proceso::generar_PID(){
 			
         }
 		if (currentIndex < 49) {
-            return numbers[currentIndex++];  // Devolvemos el número y aumentamos el índice
+            return numbers[currentIndex++];  
         } else {
-            throw out_of_range("No more unique numbers left");
+            throw out_of_range("Fuera de Rango.");
         }
 	}
 int Proceso::generar_prioridad(){
@@ -61,8 +61,32 @@ int Proceso::generar_prioridad(){
 	}
 	
 	
-	void Proceso::mostrar_proceso(){
-		cout<<"Proceso numero: "<<PID<<" lanzado por "<<nombre<<" de tipo "<<tipo<<" con prioridad "<<prioridad<<" se encuentra en estado: "<<estado<<endl;
+void Proceso::mostrar_proceso(){
+		string tipoString;
+		if(tipo==true){
+			tipoString="normal";
+			}
+		else{
+			tipoString="en tiempo real";
 		}
+		cout<<"El proceso cuyo PID es "<<PID<<" es de tipo "<<tipoString<<endl;
+		}
+void Proceso::mostrar_proceso_cola(){
+	string tipoString;
+		if(tipo==true){
+			tipoString="normal";
+			}
+		else{
+			tipoString="en tiempo real";
+		}
+	string estadoString;
+	if(estado==true){
+			estadoString="ejecución";
+			}
+		else{
+			estadoString="parado";
+		}
+		cout<<"El proceso cuyo PID es: "<<PID<<" es de tipo "<<tipoString<<" ,su estado es "<<estadoString<<" y su prioridad es: "<<prioridad;
+	} 
 	Proceso::~Proceso(){
 		}

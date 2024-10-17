@@ -9,7 +9,7 @@ public:
 	Proceso* cima();
 	void mostrar();
 	int getLongitud();
-	
+	void vaciar();
 private:
 	pnodoPila ultimo;
 	int longitud;

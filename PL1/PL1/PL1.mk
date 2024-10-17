@@ -64,7 +64,7 @@ AS       := as
 ## User defined environment variables
 ##
 CodeLiteDir:=E:\EEDD\codelite-amd64-17.0.0\codelite
-Objects0=$(IntermediateDirectory)/Proceso.cpp$(ObjectSuffix) $(IntermediateDirectory)/NodoPila.cpp$(ObjectSuffix) $(IntermediateDirectory)/Gestor.cpp$(ObjectSuffix) $(IntermediateDirectory)/Pila.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/NodoCola.cpp$(ObjectSuffix) $(IntermediateDirectory)/Cola.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Gestor.cpp$(ObjectSuffix) $(IntermediateDirectory)/NodoPila.cpp$(ObjectSuffix) $(IntermediateDirectory)/Pila.cpp$(ObjectSuffix) $(IntermediateDirectory)/Proceso.cpp$(ObjectSuffix) 
 
 
 
@@ -95,30 +95,40 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/Proceso.cpp$(ObjectSuffix): Proceso.cpp 
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/diyin/OneDrive/Documentos/WORKSPACE/PL1/PL1/PL1/Proceso.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Proceso.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Proceso.cpp$(PreprocessSuffix): Proceso.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Proceso.cpp$(PreprocessSuffix) Proceso.cpp
+$(IntermediateDirectory)/NodoCola.cpp$(ObjectSuffix): NodoCola.cpp 
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/diyin/OneDrive/Documentos/WORKSPACE/PL1/PL1/PL1/NodoCola.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/NodoCola.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/NodoCola.cpp$(PreprocessSuffix): NodoCola.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/NodoCola.cpp$(PreprocessSuffix) NodoCola.cpp
 
-$(IntermediateDirectory)/NodoPila.cpp$(ObjectSuffix): NodoPila.cpp 
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/diyin/OneDrive/Documentos/WORKSPACE/PL1/PL1/PL1/NodoPila.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/NodoPila.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/NodoPila.cpp$(PreprocessSuffix): NodoPila.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/NodoPila.cpp$(PreprocessSuffix) NodoPila.cpp
+$(IntermediateDirectory)/Cola.cpp$(ObjectSuffix): Cola.cpp 
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/diyin/OneDrive/Documentos/WORKSPACE/PL1/PL1/PL1/Cola.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Cola.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Cola.cpp$(PreprocessSuffix): Cola.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Cola.cpp$(PreprocessSuffix) Cola.cpp
+
+$(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp 
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/diyin/OneDrive/Documentos/WORKSPACE/PL1/PL1/PL1/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
 
 $(IntermediateDirectory)/Gestor.cpp$(ObjectSuffix): Gestor.cpp 
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/diyin/OneDrive/Documentos/WORKSPACE/PL1/PL1/PL1/Gestor.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Gestor.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Gestor.cpp$(PreprocessSuffix): Gestor.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Gestor.cpp$(PreprocessSuffix) Gestor.cpp
 
+$(IntermediateDirectory)/NodoPila.cpp$(ObjectSuffix): NodoPila.cpp 
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/diyin/OneDrive/Documentos/WORKSPACE/PL1/PL1/PL1/NodoPila.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/NodoPila.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/NodoPila.cpp$(PreprocessSuffix): NodoPila.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/NodoPila.cpp$(PreprocessSuffix) NodoPila.cpp
+
 $(IntermediateDirectory)/Pila.cpp$(ObjectSuffix): Pila.cpp 
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/diyin/OneDrive/Documentos/WORKSPACE/PL1/PL1/PL1/Pila.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Pila.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Pila.cpp$(PreprocessSuffix): Pila.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Pila.cpp$(PreprocessSuffix) Pila.cpp
 
-$(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp 
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/diyin/OneDrive/Documentos/WORKSPACE/PL1/PL1/PL1/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
+$(IntermediateDirectory)/Proceso.cpp$(ObjectSuffix): Proceso.cpp 
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/diyin/OneDrive/Documentos/WORKSPACE/PL1/PL1/PL1/Proceso.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Proceso.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Proceso.cpp$(PreprocessSuffix): Proceso.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Proceso.cpp$(PreprocessSuffix) Proceso.cpp
 
 ##
 ## Clean

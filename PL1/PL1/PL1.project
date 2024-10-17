@@ -94,11 +94,37 @@
   </Settings>
   <VirtualDirectory Name="src">
     <VirtualDirectory Name="Source Files">
-      <File Name="Proceso.cpp"/>
+      <VirtualDirectory Name="Colas">
+        <File Name="NodoCola.cpp"/>
+        <File Name="Cola.cpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="Gestor">
+        <File Name="Gestor.cpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="Proceso">
+        <File Name="Proceso.cpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="Pila">
+        <File Name="Pila.cpp"/>
+        <File Name="NodoPila.cpp"/>
+      </VirtualDirectory>
       <File Name="main.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="Header Files">
-      <File Name="Proceso.hpp"/>
+      <VirtualDirectory Name="Colas">
+        <File Name="NodoCola.hpp"/>
+        <File Name="Cola.hpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="Gestor">
+        <File Name="Gestor.hpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="Proceso">
+        <File Name="Proceso.hpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="Pila">
+        <File Name="Pila.hpp"/>
+        <File Name="NodoPila.hpp"/>
+      </VirtualDirectory>
     </VirtualDirectory>
   </VirtualDirectory>
 </CodeLite_Project>

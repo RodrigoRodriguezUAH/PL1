@@ -18,6 +18,7 @@ public:
 	int generar_PID();
 	bool generar_bool();
 	int generar_prioridad();
-	
+	void mostrar_proceso_cola();
 	~Proceso();
-	};
+	
+};

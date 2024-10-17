@@ -18,6 +18,6 @@ public:
 	int generar_PID();
 	bool generar_bool();
 	int generar_prioridad();
-	
 	~Proceso();
-	};
+	
+};

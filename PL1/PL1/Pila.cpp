@@ -47,12 +47,15 @@ int Pila::getLongitud(){
 }
 	
 Pila::~Pila(){
+    /*
 	pnodoPila aux;
 	while(ultimo){
 		aux = ultimo;
 		ultimo = ultimo->siguiente;
 		delete aux;
-    }
+    }*/
+    vaciar();
+    delete ultimo;
 }
 
 void Pila::vaciar(){

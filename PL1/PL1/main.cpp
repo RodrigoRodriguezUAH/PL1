@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Gestor.hpp"
-using namespace std;
 
 int main(int argc, char** argv){
     
@@ -12,9 +11,9 @@ int main(int argc, char** argv){
 				"--------\n";
 		cout << "\tProcesos en la pila -> "<<gestor.ProcesosEnPila()
 				
-			 << "\n\tProcesos en las colas:\n \t\tGPU 0-> " << 0 /*gestor.ProcesosEnGPU0() */ << "\tGPU 1-> "
-			 << 0 /*gestor.ProcesosEnGPU1() */ << "\tGPU 2-> " << 0 /*gestor.ProcesosEnGPU2() */ << "\tGPU 3-> "
-			 << 0 /*gestor.ProcesosEnGPU3()*/
+			 << "\n\tProcesos en las colas:\n \t\tGPU 0-> " << gestor.ProcesosEnGPU0() << "\tGPU 1-> "
+			 << gestor.ProcesosEnGPU1()  << "\tGPU 2-> " << gestor.ProcesosEnGPU2() << "\tGPU 3-> "
+			 << gestor.ProcesosEnGPU3()
 			 << " \n\tProcesos en las listas:\n \t\tNormal-> "
 			 << 0 /*gestor.ProcesosEnListaNormal()*/ << "\tTiempo Real-> " << 0 /*gestor.ProcesosEnListaTiempoReal()*/
 			 << "\n\tProcesos en el arbol -> " << 0							  /*gestor.ProcesosEnArbol()*/
@@ -75,16 +74,16 @@ int main(int argc, char** argv){
                  gestor.borraProcesosPila();
                 break;
             case 'D':
-                // gestor.encolarProcesos();
+                 gestor.encolarProcesos();
                 break;
             case 'E':
-                // gestor.muestraProcesosGPUs0y1();
+                 gestor.muestraProcesosGPUs0y1();
                 break;
             case 'F':
-                // gestor.muestraProcesosGPUs2y3();
+                 gestor.muestraProcesosGPUs2y3();
                 break;
             case 'G':
-                // gestor.borraProcesosColas();
+                 gestor.borraProcesosColas();
                 break;
             case 'H':
                 // gestor.enlistarProcesos();

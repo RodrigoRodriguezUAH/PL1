@@ -9,7 +9,10 @@ class Gestor{
         ~Gestor();
         //Metodos Interfaz
         int ProcesosEnPila();
-        
+        int ProcesosEnGPU0();
+        int ProcesosEnGPU1();
+        int ProcesosEnGPU2();
+        int ProcesosEnGPU3();
         //Metodos ejercicios
         //Pilas
         void genera12Procesos();
@@ -24,4 +27,6 @@ class Gestor{
         
     private:
         Pila pila;
+        Cola GPU0, GPU1, GPU2, GPU3;
+        Lista Normal, TR;
 }

@@ -1,17 +1,13 @@
-// #include <Gestor.hpp>
 #include <iostream>
 #include "Gestor.hpp"
 using namespace std;
 
-int main(int argc, char** argv)
-{
-	
-
+int main(int argc, char** argv){
+    
 	Gestor gestor;
 	char opcion;
 
 	do {
-
 		cout << "\n\t--------------------------------------------------------------"
 				"--------\n";
 		cout << "\tProcesos en la pila -> "<<gestor.ProcesosEnPila()
@@ -69,78 +65,78 @@ int main(int argc, char** argv)
 
 		switch(opcion) {
 
-		case 'A':
-			 gestor.genera12Procesos();
-			break;
-		case 'B':
-			 gestor.muestraProcesos();
-			break;
-		case 'C':
-			 gestor.borraProcesosPila();
-			break;
-		case 'D':
-			// gestor.encolarProcesos();
-			break;
-		case 'E':
-			// gestor.muestraProcesosGPUs0y1();
-			break;
-		case 'F':
-			// gestor.muestraProcesosGPUs2y3();
-			break;
-		case 'G':
-			// gestor.borraProcesosColas();
-			break;
-		case 'H':
-			// gestor.enlistarProcesos();
-			break;
-		case 'I':
-			// gestor.muestraProcesosNormal();
-			break;
-		case 'J':
-			// gestor.muestraProcesosTiempoReal();
-			break;
-		case 'K':
-			// gestor.buscarProcesos();
-			break;
-		case 'L':
-			// gestor.buscarProcesoPorNombreUsuario();
-			break;
-		case 'M':
-			// gestor.eliminarProcesoPorPID();
-			break;
-		case 'N':
-			// gestor.cambiarPrioridadProcesoPorPID();
-			break;
-		case 'O':
-			// gestor.reiniciar();
-			break;
-		case 'P':
-			//...;
-			break;
-		case 'Q':
-			//...;
-			break;
-		case 'R':
-			//...;
-			break;
-		case 'T':
-			//...;
-			break;
-		case 'U':
-			//...;
-			break;
-		case 'V':
-			//...;
-			break;
-		case 'W':
-			//...;
-			break;
-		case 'S':
-			cout << "Saliendo del programa...\n";
-			break;
-		default:
-			cout << "Opcion incorrecta!\n\n";
-			break;
+            case 'A':
+                 gestor.genera12Procesos();
+                break;
+            case 'B':
+                 gestor.muestraProcesos();
+                break;
+            case 'C':
+                 gestor.borraProcesosPila();
+                break;
+            case 'D':
+                // gestor.encolarProcesos();
+                break;
+            case 'E':
+                // gestor.muestraProcesosGPUs0y1();
+                break;
+            case 'F':
+                // gestor.muestraProcesosGPUs2y3();
+                break;
+            case 'G':
+                // gestor.borraProcesosColas();
+                break;
+            case 'H':
+                // gestor.enlistarProcesos();
+                break;
+            case 'I':
+                // gestor.muestraProcesosNormal();
+                break;
+            case 'J':
+                // gestor.muestraProcesosTiempoReal();
+                break;
+            case 'K':
+                // gestor.buscarProcesos();
+                break;
+            case 'L':
+                // gestor.buscarProcesoPorNombreUsuario();
+                break;
+            case 'M':
+                // gestor.eliminarProcesoPorPID();
+                break;
+            case 'N':
+                // gestor.cambiarPrioridadProcesoPorPID();
+                break;
+            case 'O':
+                // gestor.reiniciar();
+                break;
+            case 'P':
+                //...;
+                break;
+            case 'Q':
+                //...;
+                break;
+            case 'R':
+                //...;
+                break;
+            case 'T':
+                //...;
+                break;
+            case 'U':
+                //...;
+                break;
+            case 'V':
+                //...;
+                break;
+            case 'W':
+                //...;
+                break;
+            case 'S':
+                cout << "Saliendo del programa...\n";
+                break;
+            default:
+                cout << "Opcion incorrecta!\n\n";
+                break;
 		}
 	} while(opcion != 'S');
 

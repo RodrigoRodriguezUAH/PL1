@@ -31,3 +31,4 @@ compile_flags.txt
 wxcrafter/src/wxcversion.cpp
 LiteEditor/autoversion.h
 .DS_Store
+PL1/PL1/PL1.mk

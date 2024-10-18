@@ -50,3 +50,4 @@ Cola::~Cola(){
 	while(primero)
 		vaciar();		
 }
+

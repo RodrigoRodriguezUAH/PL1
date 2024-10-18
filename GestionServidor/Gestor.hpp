@@ -29,4 +29,3 @@ class Gestor{
         Cola GPU0, GPU1, GPU2, GPU3;
         Lista Normal, TR;
 };
-

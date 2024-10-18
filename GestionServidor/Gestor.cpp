@@ -89,6 +89,3 @@ void Gestor::borraProcesosColas(){
     GPU3.vaciar();
 }
 
-
-
-

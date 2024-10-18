@@ -1,3 +1,6 @@
+#ifndef PROCESO_HPP
+#define PROCESO_HPP
+
 #include <iostream>
 #include <iomanip>
 #include <string> 
@@ -13,13 +16,19 @@ class Proceso{
         
     public:
         Proceso();
-        string generar_nombre ();
-        void set_prioridad(int prioridad);
-        int get_prioridad();
-        void mostrar_proceso();
-        int generar_PID();
+		~Proceso();
+		//Metodos para generar sus datos
+		string generar_nombre();
+		int generar_PID();
         bool generar_bool();
         int generar_prioridad();
-        void mostrar_proceso_cola();
-        ~Proceso();
-}
+		//Metodos que muestran datos
+        void mostrar_proceso();
+        void mostrar_proceso_cola();	
+		//Metodos get y set
+        void setPrioridad(int prioridad);
+        int getPrioridad();
+		bool getTipo();
+};
+
+#endif

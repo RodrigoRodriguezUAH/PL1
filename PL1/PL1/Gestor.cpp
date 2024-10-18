@@ -56,7 +56,7 @@ void Gestor::encolarProcesos(){
     Proceso* desplazado;
     while(pila.getLongitud()!=0){
         desplazado = pila.extraer();
-        if (desplazado->tipo){ //Proceso de tipo normal porque estos equivalen a true
+        if (desplazado->getTipo()){ //Proceso de tipo normal porque estos equivalen a true
             if (GPU0.getLongitud() <= GPU1.getLongitud()){ //Compara longitudes
                 GPU0.encolar(desplazado);
             } else {GPU1.encolar(desplazado);}

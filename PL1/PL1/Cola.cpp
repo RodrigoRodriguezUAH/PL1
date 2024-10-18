@@ -1,10 +1,9 @@
 #include "Cola.hpp"
 
-Cola::Cola(string nombre){
+Cola::Cola(){
 	primero = NULL;
 	ultimo = NULL;
 	longitud = 0;
-	this->nombre = nombre;
 }
 
 int Cola::getLongitud(){
@@ -17,7 +16,6 @@ void Cola::encolar(Proceso* p){
 
 void Cola::mostrar(){
 	pnodoCola aux = primero;
-	cout << nombre;
 	
 	while(aux){
 		aux->proceso->mostrar_proceso_cola();
@@ -50,5 +48,5 @@ Proceso* Cola::verPrimero(){
 
 Cola::~Cola(){
 	while(primero)
-		eliminar();		
+		vaciar();		
 }

@@ -1,3 +1,6 @@
+#ifndef NODOPILA_HPP
+#define NODOPILA_HPP
+
 #include "Proceso.hpp"
 
 class NodoPila{
@@ -12,3 +15,5 @@ class NodoPila{
 };
 
 typedef NodoPila* pnodoPila;
+
+#endif

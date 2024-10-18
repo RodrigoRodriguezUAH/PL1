@@ -1,3 +1,6 @@
+#ifndef PILA_HPP
+#define PILA_HPP
+
 #include "NodoPila.hpp"
 
 class Pila{
@@ -14,4 +17,6 @@ class Pila{
     private:
         pnodoPila ultimo;
         int longitud;
-}
+};
+
+#endif

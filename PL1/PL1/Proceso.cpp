@@ -6,7 +6,8 @@ using namespace std;
 //Variables globales
 int numbers[49]; //Lista de PIDs creados
 int currentIndex; //Variable que contabiliza el nº de PIDs creados
-string nombres[10] = {"Ana","Luis","Maria","Pedro","Sofia","Javier","Lucia","Carlos","Marta","Andres"}
+//Lista de los nombres de usuario ficticios que tendran los procesos
+string nombres[10] = {"Ana","Luis","Maria","Pedro","Sofia","Javier","Lucia","Carlos","Marta","Andres"};
 
 //Metodos
 Proceso::Proceso(){
@@ -17,6 +18,11 @@ Proceso::Proceso(){
     this->estado = false;
 }
 
+Proceso::~Proceso(){
+	
+}
+
+//Metodos generadores de datos
 bool Proceso::generar_bool() {
 	return rand() % 2 == 0;
 }
@@ -42,6 +48,7 @@ int Proceso::generar_prioridad(){
     } else return rand()%100;
 }
 
+//Metodos que muestran datos
 void Proceso::mostrar_proceso(){
     string tipoString;
     
@@ -54,15 +61,25 @@ void Proceso::mostrar_proceso(){
 
 void Proceso::mostrar_proceso_cola(){
     string tipoString;
-    if(tipo == true){ tipoString="normal";}
+    if(tipo == true){ tipoString = "normal";}
     else{ tipoString = "en tiempo real";}
     
     string estadoString;
-    if(estado == true){ estadoString="ejecución";}
-    else{ estadoString="parado";}
+    if(estado == true){ estadoString = "ejecución";}
+    else{ estadoString = "parado";}
     
     cout << "El proceso cuyo PID es: " << PID << " es de tipo " << tipoString << ", su estado es " << estadoString << " y su prioridad es: " << prioridad;
 }
 
-Proceso::~Proceso(){
+//Gets y sets
+void Proceso::setPrioridad(int prioridad){
+	this->prioridad = prioridad;
+}
+
+int Proceso::getPrioridad(){
+	return prioridad;
+}
+
+bool Proceso::getTipo(){
+	return tipo;
 }

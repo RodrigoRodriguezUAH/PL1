@@ -1,3 +1,6 @@
+#ifndef NODOCOLA_HPP
+#define NODOCOLA_HPP
+
 #include "Proceso.hpp"
 
 class NodoCola{
@@ -13,3 +16,6 @@ class NodoCola{
 };
 
 typedef NodoCola* pnodoCola;
+
+
+#endif

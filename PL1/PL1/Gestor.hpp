@@ -1,7 +1,6 @@
 #include "Pila.hpp"
 #include "Cola.hpp"
 #include "Lista.hpp"
-using namespace std;
 
 class Gestor{
     public:
@@ -19,7 +18,7 @@ class Gestor{
         void muestraProcesos();
         void borraProcesosPila();
         //Colas
-        void encolarProcesos():
+        void encolarProcesos();
         void muestraProcesosGPUs0y1();
         void muestraProcesosGPUs2y3();
         void borraProcesosColas();
@@ -29,4 +28,5 @@ class Gestor{
         Pila pila;
         Cola GPU0, GPU1, GPU2, GPU3;
         Lista Normal, TR;
-}
+};
+

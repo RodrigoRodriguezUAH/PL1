@@ -36,9 +36,10 @@ int Proceso::generar_PID(){
 	for (int i = 0; i < 49; ++i) {
         numbers[i] = 300 + i;
     }
-	if (currentIndex < 49) {
+	if (currentIndex < 49) { //Surge un problema y es que si despues de generar procesos y enviarlos o borrarlos queremos volver a generar, la lista ya se ha llenado
         return numbers[currentIndex++];  
-    } else throw out_of_range("Limite de procesos generados alcanzado.");/*Este texto no se seberia ver durante la implementacion del programa por la restriccion en generar procesos dentro de Gestor*/
+    } 
+	//else throw out_of_range("Limite de procesos generados alcanzado.");/*Este texto no se seberia ver durante la implementacion del programa por la restriccion en generar procesos dentro de Gestor*/
 } //Si queremos hacer un throw, hace falta incluir un try-catch, este puede estar en el constructor on en la funcion del gestor que genera los procesos
 
 int Proceso::generar_prioridad(){

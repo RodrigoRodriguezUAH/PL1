@@ -1,4 +1,5 @@
 /build-release/
+*.mk
 *.dll
 *.exe
 .codelite/

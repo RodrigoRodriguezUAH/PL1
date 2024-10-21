@@ -1,6 +1,9 @@
 #include "NodoLista.hpp"
 
-NodoLista::NodoLista(){
+NodoLista::NodoLista(Proceso* p){
+	proceso = p;
+	siguiente = nullptr;
+	anterior = nullptr;
 }
 
 NodoLista::~NodoLista(){

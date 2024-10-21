@@ -5,7 +5,7 @@
 
 class NodoPila{
     public:
-        NodoPila(Proceso* p,NodoPila* sig=NULL);
+        NodoPila(Proceso* p, NodoPila* sig = NULL);
         ~NodoPila();
     
     private:

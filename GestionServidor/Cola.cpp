@@ -56,7 +56,7 @@ void Cola::encolarOrdenado(Proceso* p){
 }
 
 void Cola::mostrar(){
-	pnodoCola aux = ultimo;
+	pnodoCola aux = primero;
 	while(aux){
 		aux->proceso->mostrar_proceso_cola();
 		aux = aux->siguiente;

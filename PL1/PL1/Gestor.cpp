@@ -52,18 +52,18 @@ void Gestor::muestraProcesos(){
 		pila.vaciar();
 		}
 void Gestor::muestraProcesosGPUs1y2(){
-	cout<<"GPU1"<<endl;
+	cout<<"GPU1:"<<endl;
 	GPU1.mostrar();
 	cout<<endl;
-	cout<<"GPU2"<<endl;
+	cout<<"GPU2:"<<endl;
 	GPU2.mostrar();
 	cout<<endl;
 	}
 void Gestor::muestraProcesosGPUs3y4(){
-	cout<<"GPU3"<<endl;
+	cout<<"GPU3:"<<endl;
 	GPU3.mostrar();
 	cout<<endl;
-	cout<<"GPU4"<<endl;
+	cout<<"GPU4:"<<endl;
 	GPU4.mostrar();
 	cout<<endl;
 	}

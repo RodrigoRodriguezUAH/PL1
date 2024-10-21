@@ -9,7 +9,6 @@ public:
 private:
 	Proceso* proceso;
 	NodoCola* siguiente;
-	
 	friend class Cola;
 	};
 typedef NodoCola* pnodoCola;

@@ -5,6 +5,9 @@ Pila::Pila(){
 	ultimo=NULL;
 	longitud=0;
 	}
+bool Pila::es_vacia(){
+	return ultimo==NULL;
+	}
 void Pila::insertar(Proceso* p){
 	pnodoPila nuevo;
 	nuevo=new NodoPila(p,ultimo);

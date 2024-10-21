@@ -37,7 +37,9 @@ string Proceso::generar_nombre(){
 	return nombres[i];
 	}
 	
-	
+bool Proceso::get_tipo(){
+	return tipo;
+	}
 int Proceso::generar_PID(){
 	for (int i = 0; i < 49; ++i) {
 			numbers[i] = 300 + i;
@@ -50,17 +52,20 @@ int Proceso::generar_PID(){
         }
 	}
 int Proceso::generar_prioridad(){
-	bool tipo = generar_bool();
-	if(tipo){
-		return rand()% 39 - 19;
+	
+	if(tipo==true){
+		 int min = -19, max = 19; 
+		 return 120+(rand() % (max - min) + min);
 		}
-	else{
+	else {
 		return rand()%100;	
 		}
 		
 	}
 	
-	
+int Proceso::get_prioridad(){
+	return prioridad;
+	}
 void Proceso::mostrar_proceso(){
 		string tipoString;
 		if(tipo==true){
@@ -87,6 +92,7 @@ void Proceso::mostrar_proceso_cola(){
 			estadoString="parado";
 		}
 		cout<<"El proceso cuyo PID es: "<<PID<<" es de tipo "<<tipoString<<" ,su estado es "<<estadoString<<" y su prioridad es: "<<prioridad;
+	cout<<endl;
 	} 
 	Proceso::~Proceso(){
 		}

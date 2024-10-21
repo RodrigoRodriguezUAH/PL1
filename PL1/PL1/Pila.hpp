@@ -10,6 +10,7 @@ public:
 	void mostrar();
 	int getLongitud();
 	void vaciar();
+	bool es_vacia();
 private:
 	pnodoPila ultimo;
 	int longitud;

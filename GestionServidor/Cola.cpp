@@ -73,23 +73,22 @@ bool Cola::esVacia(){
 }
 
 Proceso* Cola::desencolar(){
+	
 	pnodoCola nodo;
 	Proceso* p;
-	nodo = primero;
-	//Si la cola esta vacia termina el metodo
-    if(!nodo)
-        cout << "La cola esta vacia";
+	nodo=primero;
+	if(!nodo)
 		return 0;
-    //Eliminar elemento de la cola
-	primero = nodo->siguiente;
-	p = nodo->proceso;
+	primero=nodo->siguiente;
+	p=nodo->proceso;
 	delete nodo;
-	//Si termina la cola
-    if(!primero)
-		ultimo = NULL;
+	if(!primero)
+		ultimo=NULL;
 	longitud--;
 	return p;
-}
+	}
+
+
 
 void Cola::vaciar(){
 	while(primero) desencolar();

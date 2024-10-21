@@ -77,8 +77,10 @@ Proceso* Cola::desencolar(){
 	pnodoCola nodo;
 	Proceso* p;
 	nodo=primero;
-	if(!nodo)
+	if(!nodo){ 
+		cout<<"La cola esta vacía"; 
 		return 0;
+	}
 	primero=nodo->siguiente;
 	p=nodo->proceso;
 	delete nodo;

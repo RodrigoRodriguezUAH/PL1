@@ -58,12 +58,12 @@ void Gestor::encolarProcesos(){
         desplazado = pila.extraer();
         if (desplazado->getTipo()){ //Proceso de tipo normal porque estos equivalen a true
             if (GPU0.getLongitud() <= GPU1.getLongitud()){ //Compara longitudes
-                GPU0.encolar(desplazado);
-            } else {GPU1.encolar(desplazado);}
+                GPU0.encolarOrdenado(desplazado);
+            } else {GPU1.encolarOrdenado(desplazado);}
         } else { //Proceso de tipo tiempo real
             if (GPU2.getLongitud() <= GPU3.getLongitud()){
-                GPU2.encolar(desplazado);
-            } else {GPU3.encolar(desplazado);}
+                GPU2.encolarOrdenado(desplazado);
+            } else {GPU3.encolarOrdenado(desplazado);}
         }
     }
 }

@@ -8,10 +8,12 @@ class Cola{
         Cola();
         ~Cola();
         void encolar(Proceso* p);
+		void encolarOrdenado(Proceso *p);
         Proceso* vaciar();
         void mostrar();
         Proceso* verPrimero();
         int getLongitud();
+		bool esVacia();
         
     private:
         pnodoCola primero, ultimo;

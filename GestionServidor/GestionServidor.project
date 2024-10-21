@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="PL1" Version="11000" InternalType="Console">
+<CodeLite_Project Name="GestionServidor" Version="11000" InternalType="Console">
   <Description/>
   <Dependencies/>
   <Settings Type="Executable">
@@ -94,37 +94,25 @@
   </Settings>
   <VirtualDirectory Name="src">
     <VirtualDirectory Name="Source Files">
-      <VirtualDirectory Name="Colas">
-        <File Name="NodoCola.cpp"/>
-        <File Name="Cola.cpp"/>
-      </VirtualDirectory>
-      <VirtualDirectory Name="Gestor">
-        <File Name="Gestor.cpp"/>
-      </VirtualDirectory>
-      <VirtualDirectory Name="Proceso">
-        <File Name="Proceso.cpp"/>
-      </VirtualDirectory>
-      <VirtualDirectory Name="Pila">
-        <File Name="Pila.cpp"/>
-        <File Name="NodoPila.cpp"/>
-      </VirtualDirectory>
-      <File Name="main.cpp"/>
+      <File Name="Proceso.cpp"/>
+      <File Name="Pila.cpp"/>
+      <File Name="NodoPila.cpp"/>
+      <File Name="NodoLista.cpp"/>
+      <File Name="NodoCola.cpp"/>
+      <File Name="Lista.cpp"/>
+      <File Name="Gestor.cpp"/>
+      <File Name="Cola.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="Header Files">
-      <VirtualDirectory Name="Colas">
-        <File Name="NodoCola.hpp"/>
-        <File Name="Cola.hpp"/>
-      </VirtualDirectory>
-      <VirtualDirectory Name="Gestor">
-        <File Name="Gestor.hpp"/>
-      </VirtualDirectory>
-      <VirtualDirectory Name="Proceso">
-        <File Name="Proceso.hpp"/>
-      </VirtualDirectory>
-      <VirtualDirectory Name="Pila">
-        <File Name="Pila.hpp"/>
-        <File Name="NodoPila.hpp"/>
-      </VirtualDirectory>
+      <File Name="Proceso.hpp"/>
+      <File Name="Pila.hpp"/>
+      <File Name="NodoPila.hpp"/>
+      <File Name="NodoLista.hpp"/>
+      <File Name="NodoCola.hpp"/>
+      <File Name="Lista.hpp"/>
+      <File Name="Gestor.hpp"/>
+      <File Name="Cola.hpp"/>
     </VirtualDirectory>
+    <File Name="main.cpp"/>
   </VirtualDirectory>
 </CodeLite_Project>

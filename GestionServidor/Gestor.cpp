@@ -87,5 +87,6 @@ void Gestor::borraProcesosColas(){
     GPU1.vaciar();
     GPU2.vaciar();
     GPU3.vaciar();
+	cout << "Colas vaciadas" << endl;
 }
 

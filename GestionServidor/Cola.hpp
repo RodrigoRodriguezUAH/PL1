@@ -9,7 +9,8 @@ class Cola{
         ~Cola();
         void encolar(Proceso* p);
 		void encolarOrdenado(Proceso *p);
-        Proceso* vaciar();
+        Proceso* desencolar();
+		void vaciar();
         void mostrar();
         Proceso* verPrimero();
         int getLongitud();

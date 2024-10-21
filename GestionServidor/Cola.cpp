@@ -14,11 +14,10 @@ void Cola::encolar(Proceso* p){
 	pnodoCola siguiente = NULL;
     pnodoCola nodo = new NodoCola(p, siguiente); 
 	if (!primero){
-		primero = nodo;
-		ultimo = primero;
+		primero = ultimo = nodo;
 		longitud++;
 	} else {
-		nodo->siguiente = ultimo;
+		ultimo->siguiente = nodo;
 		ultimo = nodo;
 		longitud++;
 	}
@@ -27,16 +26,18 @@ void Cola::encolar(Proceso* p){
 void Cola::encolarOrdenado(Proceso* p){
 	pnodoCola nuevo = new NodoCola(p);
 	pnodoCola actual = primero;
+	//Antes de encolar hay que aumentar la prioridad de los procesos normales
+	if(p->getTipo()){p->setPrioridad(p->getPrioridad()+120);}
 	//Cola vacia
 	if(esVacia()){
 		primero = ultimo = nuevo;
 		longitud++;
 		return;
 	}
-	//Elemento tiene menos prioridad que el ultimo de la cola
-	if(nuevo->proceso->getPrioridad() < ultimo->proceso->getPrioridad()){
-		nuevo->siguiente = ultimo;
-		ultimo = nuevo;
+	//Elemento tiene menos prioridad que el primero de la cola
+	if(nuevo->proceso->getPrioridad() < primero->proceso->getPrioridad()){
+		nuevo->siguiente = primero;
+		primero = nuevo;
 		longitud++;
 		return;
 	}
@@ -48,13 +49,14 @@ void Cola::encolarOrdenado(Proceso* p){
 	//Colocar el nuevo nodo en la cola
 	nuevo->siguiente = actual->siguiente;
 	actual->siguiente = nuevo;
-	//Si se llega al principio de la cola el nuevo sera el primero
-	if(nuevo->siguiente == NULL){primero = nuevo;}
+	//Si se llega al final de la cola ultimo apunta al nuevo nodo
+	if(nuevo->siguiente == NULL){ultimo = nuevo;}
+	
 	longitud++;
 }
 
 void Cola::mostrar(){
-	pnodoCola aux = primero;
+	pnodoCola aux = ultimo;
 	while(aux){
 		aux->proceso->mostrar_proceso_cola();
 		aux = aux->siguiente;
@@ -66,7 +68,7 @@ bool Cola::esVacia(){
 	else {return false;}
 }
 
-Proceso* Cola::vaciar(){
+Proceso* Cola::desencolar(){
 	pnodoCola nodo;
 	Proceso* p;
 	nodo = primero;
@@ -85,12 +87,16 @@ Proceso* Cola::vaciar(){
 	return p;
 }
 
+void Cola::vaciar(){
+	while(primero){desencolar();}
+}
+
 Proceso* Cola::verPrimero(){
 	return primero->proceso;
 }
 
 Cola::~Cola(){
-	while(primero)
-		vaciar();		
+	while(primero) vaciar();
+	
 }
 

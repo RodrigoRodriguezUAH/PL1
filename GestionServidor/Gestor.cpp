@@ -33,14 +33,16 @@ int Gestor::ProcesosEnGPU3(){
 //Funciones de las opciones del main:
 //Pilas
 void Gestor::genera12Procesos(){
-	if(pila.getLongitud() < 48){
-        for (int i=0; i<12; i++){
-            Proceso* p = new Proceso();
-            pila.insertar(p);
-        }
-    }
-    /*Aqui se podria poner o un try catch si queremos dejar el throw en generar proceso o sino:
-    else{ cout << "La pila esta llena, vaciala antes de introducir nuevos procesos." << endl;}*/
+	try{
+		if(pila.getLongitud() < 48){
+			for (int i=0; i<12; i++){
+				Proceso* p = new Proceso();
+				pila.insertar(p);
+			}
+		}
+	} catch(int e) {
+		cout << "No se pueden generar más procesos";
+	}
 }
 
 void Gestor::muestraProcesos(){

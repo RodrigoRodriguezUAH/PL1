@@ -55,6 +55,10 @@ void Cola::encolarOrdenado(Proceso* p){
 	longitud++;
 }
 
+Proceso* Cola::verPrimero(){
+	return primero->proceso;
+}
+
 void Cola::mostrar(){
 	pnodoCola aux = primero;
 	while(aux){
@@ -88,15 +92,12 @@ Proceso* Cola::desencolar(){
 }
 
 void Cola::vaciar(){
-	while(primero){desencolar();}
-}
-
-Proceso* Cola::verPrimero(){
-	return primero->proceso;
+	while(primero) desencolar();
 }
 
 Cola::~Cola(){
 	while(primero) vaciar();
-	
+	delete primero;
+	delete ultimo;	
 }
 

@@ -7,9 +7,13 @@ class Lista{
     public:
         Lista();
         ~Lista();
+		void insertar();
+		void extraer();
+		void mostrar();
 
     private:
-        
+        pnodoLista Primero;
+		pnodoLista Ultimo;
 };
 
 #endif // LISTA_HPP

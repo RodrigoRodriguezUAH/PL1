@@ -9,7 +9,7 @@ Cola::Cola(){
 int Cola::getLongitud(){
     return this->longitud;
 }
-
+/*
 void Cola::encolar(Proceso* p){
 	pnodoCola siguiente = NULL;
     pnodoCola nodo = new NodoCola(p, siguiente); 
@@ -22,7 +22,7 @@ void Cola::encolar(Proceso* p){
 		longitud++;
 	}
 }
-
+*/
 void Cola::encolarOrdenado(Proceso* p){
 	pnodoCola nuevo = new NodoCola(p);
 	pnodoCola actual = primero;

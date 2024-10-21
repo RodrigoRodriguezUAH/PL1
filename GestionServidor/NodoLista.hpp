@@ -5,7 +5,7 @@
 
 class NodoLista{
     public:
-        NodoLista();
+        NodoLista(Proceso* p);
         ~NodoLista();
         
     private:

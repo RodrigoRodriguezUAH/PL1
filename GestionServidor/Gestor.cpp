@@ -54,7 +54,7 @@ void Gestor::borraProcesosPila(){
 //Colas
 void Gestor::encolarProcesos(){
     Proceso* desplazado;
-    while(pila.getLongitud() > 0){
+    while(pila.getLongitud() != 0){
         desplazado = pila.extraer();
         if (desplazado->getTipo()){ //Proceso de tipo normal porque estos equivalen a true
             if (GPU0.getLongitud() <= GPU1.getLongitud()){ //Compara longitudes

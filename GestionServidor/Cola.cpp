@@ -11,12 +11,21 @@ int Cola::getLongitud(){
 }
 
 void Cola::encolar(Proceso* p){
-    
+	pnodoCola siguiente = NULL;
+    pnodoCola nodo = new NodoCola(p, siguiente); 
+	if (!primero){
+		primero = nodo;
+		ultimo = primero;
+		longitud++;
+	} else {
+		nodo->siguiente = ultimo;
+		ultimo = nodo;
+		longitud++;
+	}
 }
 
 void Cola::mostrar(){
 	pnodoCola aux = primero;
-	
 	while(aux){
 		aux->proceso->mostrar_proceso_cola();
 		aux = aux->siguiente;
@@ -37,7 +46,7 @@ Proceso* Cola::vaciar(){
 	delete nodo;
 	//Si termina la cola
     if(!primero)
-		ultimo=NULL;
+		ultimo = NULL;
 	longitud--;
 	return p;
 }

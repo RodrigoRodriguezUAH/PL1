@@ -7,7 +7,7 @@ Pila::Pila(){
 
 void Pila::insertar(Proceso* p){
 	pnodoPila nuevo;
-	nuevo = new NodoPila(p,ultimo);
+	nuevo = new NodoPila(p, ultimo);
 	ultimo = nuevo;
 	longitud++;
 }

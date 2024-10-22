@@ -31,6 +31,8 @@ class Proceso{
         int getPrioridad();
 		bool getTipo();
 		void setEstado(bool estado);
+		//Funcion Reset
+		void resetProcesos();
 };
 
 #endif

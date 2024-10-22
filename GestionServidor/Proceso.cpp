@@ -7,8 +7,18 @@ using namespace std;
 //Variables globales
 int numbers[49]; //Lista de PIDs creados
 int currentIndex; //Variable que contabiliza el nº de PIDs creados
+bool resetear; //Variable que indica si se puede resetear
 //Lista de los nombres de usuario ficticios que tendran los procesos
 string nombres[10] = {"Ana","Luis","Maria","Pedro","Sofia","Javier","Lucia","Carlos","Marta","Andres"};
+//Funcion global Reset para si queremos que se reinicien los procesos
+void resetProcesos(){
+	if(resetear){
+		fill(begin(numbers), end(numbers), 0); //Llena la lista de 0
+		currentIndex = 0; //Reinicia el indice
+		resetear = false; //Indica que no se debe resetear de nuevo
+	}
+}
+
 
 //Metodos
 Proceso::Proceso(){
@@ -34,15 +44,15 @@ string Proceso::generar_nombre(){
 }
 
 int Proceso::generar_PID(){
-	for (int i = 0; i < 49; ++i) {
-        numbers[i] = 300 + i;
-    }
-	if (currentIndex < 49) { //Surge un problema y es que si despues de generar procesos y enviarlos o borrarlos queremos volver a generar, la lista ya se ha llenado
-        return numbers[currentIndex++];  
-    }
-	else throw out_of_range("Limite de procesos generados alcanzado.");
-	/*Este texto no se seberia ver durante la implementacion del programa por la restriccion en generar procesos dentro de Gestor*/
-} //Si queremos hacer un throw, hace falta incluir un try-catch, este puede estar en el constructor on en la funcion del gestor que genera los procesos
+	//Se llena la lista con los PIDs
+	for (int i = 0; i < 49; ++i) {numbers[i] = 300 + i;}
+	//Si el contador no ha llegado al limite no hay problema
+	if (currentIndex < 49) {
+		resetear = true; //Permite hacer un reseteo
+		return numbers[currentIndex++];
+	}
+	else throw out_of_range("Limite de procesos alcanzado, resetea el programa para poder generar más.");
+}
 
 int Proceso::generar_prioridad(){
 	bool tipo = generar_bool();
@@ -72,14 +82,16 @@ void Proceso::mostrar_proceso_cola(){
     cout << "El proceso cuyo PID es: " << PID << " es de tipo " << tipoString << ", su estado es " 
 		<< estadoString << " y su prioridad es: " << prioridad << endl;
 }
+
 void Proceso::mostrar_proceso_lista(){
 	string tipoString;
-	
 	if(tipo == true){ tipoString = "Normal";}
     else {tipoString = "TiempoReal";}
+	
 	string estadoString;
 	if(estado == true){ estadoString = "En Ejecucion";}
     else {estadoString = "Parado";}
+	
 	cout << left << setw(10) << PID
          << setw(15) << nombre
          << setw(20) << tipoString
@@ -87,6 +99,7 @@ void Proceso::mostrar_proceso_lista(){
          << setw(10) << prioridad
          << endl;
 }
+
 //Gets y sets
 void Proceso::setPrioridad(int prioridad){
 	this->prioridad = prioridad;
@@ -100,5 +113,6 @@ bool Proceso::getTipo(){
 	return tipo;
 }
 void Proceso::setEstado(bool estado){
-	this->estado=estado;
+	this->estado = estado;
 }
+

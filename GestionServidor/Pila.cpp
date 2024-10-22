@@ -66,6 +66,8 @@ void Pila::vaciar(){
 		delete aux->proceso;
 		delete aux;
 	}
-	ultimo=nullptr;
-	longitud=0;
+	ultimo = nullptr;
+	longitud = 0;
 }
+
+

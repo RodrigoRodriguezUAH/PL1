@@ -41,8 +41,8 @@ void Gestor::genera12Procesos(){
 				pila.insertar(p);
 			}
 		}
-	} catch(int e) {
-		cout << "No se pueden generar más procesos";
+	} catch(const out_of_range& e) {
+		cout << e.what() << endl; //Muestra el mensaje de la excepcion
 	}
 }
 
@@ -52,6 +52,7 @@ void Gestor::muestraProcesos(){
 
 void Gestor::borraProcesosPila(){
 	pila.vaciar();
+	cout << "Pila vaciada";
 }
 
 //Colas
@@ -114,11 +115,13 @@ void Gestor::enlistarProcesos(){
 			Treal.insertarFinal(GPU3.desencolar());
 		}
 }
+
 void Gestor::muestraProcesosNormal(){
-	cout<<"Lista de procesos Normales"<<endl;
+	cout << "Lista de procesos Normales" << endl;
 	normal.mostrar();
 }
+
 void Gestor::muestraProcesosTiempoReal(){
-	cout<<"Lista de procesos en Tiempo Real"<<endl;
+	cout << "Lista de procesos en Tiempo Real" << endl;
 	Treal.mostrar();
 }

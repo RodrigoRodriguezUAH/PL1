@@ -1,10 +1,11 @@
 #include "Lista.hpp"
 #include <iostream>
 Lista::Lista(){
-	primero=NULL;
-	ultimo=NULL;
+	primero = NULL;
+	ultimo = NULL;
 	longitud=0;
-	}
+}
+
 Lista::~Lista() {
     pnodoLista actual = primero;
     while (actual != nullptr) {
@@ -18,18 +19,20 @@ int Lista::get_longitud(){return longitud;}
 
 void Lista::insertarInicio(Proceso* p) {
     pnodoLista nuevo = new NodoLista(p);
-    nuevo->siguiente=primero;
-    primero=nuevo;
+    nuevo->siguiente = primero;
+    primero = nuevo;
 	p->setEstado(true);
 	longitud++;
 }
+
 void Lista::insertarFinal(Proceso* p){
 	pnodoLista nuevo = new NodoLista(p);
-	nuevo->siguiente=ultimo;
-	ultimo=nuevo;
+	nuevo->siguiente = ultimo;
+	ultimo = nuevo;
 	p->setEstado(true);
 	longitud++;
 }
+
 void Lista::mostrar(){
 	pnodoLista aux = ultimo;
 	cout << left << setw(10) << "PID"
@@ -43,10 +46,11 @@ void Lista::mostrar(){
 		aux = aux->siguiente;
     }
 }
+
 void Lista::eliminar(Proceso* p) {
     if (primero == nullptr) return;
 
-    if (primero->proceso==p) {
+    if (primero->proceso == p) {
         NodoLista* temp = primero;
         primero = primero->siguiente;
         delete temp;

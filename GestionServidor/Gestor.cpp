@@ -1,9 +1,10 @@
 #include "Gestor.hpp"
-
+#include <iostream>
+using namespace std;
 Gestor::Gestor(){
 	Pila pila;
     Cola GPU0, GPU1, GPU2, GPU3;
-    Lista Normal, TR;
+    Lista normal, Treal;
 }
 
 Gestor::~Gestor(){
@@ -92,3 +93,32 @@ void Gestor::borraProcesosColas(){
 	cout << "Colas vaciadas" << endl;
 }
 
+//Listas
+int Gestor::ProcesosEnListaNormal(){
+	return normal.get_longitud();
+}
+int Gestor::ProcesosEnListaTiempoReal(){
+		return Treal.get_longitud();
+}
+void Gestor::enlistarProcesos(){
+		while(GPU0.getLongitud()>0){
+			normal.insertarFinal(GPU0.desencolar());
+		}
+		while(GPU1.getLongitud()>0){
+			normal.insertarFinal(GPU1.desencolar());
+		}
+		while(GPU2.getLongitud()>0){
+			Treal.insertarFinal(GPU2.desencolar());
+		}
+		while(GPU3.getLongitud()>0){
+			Treal.insertarFinal(GPU3.desencolar());
+		}
+}
+void Gestor::muestraProcesosNormal(){
+	cout<<"Lista de procesos Normales"<<endl;
+	normal.mostrar();
+}
+void Gestor::muestraProcesosTiempoReal(){
+	cout<<"Lista de procesos en Tiempo Real"<<endl;
+	Treal.mostrar();
+}

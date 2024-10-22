@@ -24,11 +24,13 @@ class Proceso{
         int generar_prioridad();
 		//Metodos que muestran datos
         void mostrar_proceso();
-        void mostrar_proceso_cola();	
+        void mostrar_proceso_cola();
+		void mostrar_proceso_lista();	
 		//Metodos get y set
         void setPrioridad(int prioridad);
         int getPrioridad();
 		bool getTipo();
+		void setEstado(bool estado);
 };
 
 #endif

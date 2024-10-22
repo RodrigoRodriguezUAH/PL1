@@ -12,6 +12,8 @@ class Gestor{
         int ProcesosEnGPU1();
         int ProcesosEnGPU2();
         int ProcesosEnGPU3();
+		int ProcesosEnListaNormal();
+		int ProcesosEnListaTiempoReal();
         //Metodos ejercicios
         //Pilas
         void genera12Procesos();
@@ -23,9 +25,11 @@ class Gestor{
         void muestraProcesosGPUs2y3();
         void borraProcesosColas();
         //Listas
-        
+        void enlistarProcesos();
+		void muestraProcesosNormal();
+		void muestraProcesosTiempoReal();
     private:
         Pila pila;
         Cola GPU0, GPU1, GPU2, GPU3;
-        Lista Normal, TR;
+        Lista normal, Treal;
 };

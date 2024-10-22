@@ -1,6 +1,7 @@
 #include "Proceso.hpp"
 #include <cstdlib>
-
+#include <iostream>
+#include <iomanip>
 using namespace std;
 
 //Variables globales
@@ -71,7 +72,21 @@ void Proceso::mostrar_proceso_cola(){
     cout << "El proceso cuyo PID es: " << PID << " es de tipo " << tipoString << ", su estado es " 
 		<< estadoString << " y su prioridad es: " << prioridad << endl;
 }
-
+void Proceso::mostrar_proceso_lista(){
+	string tipoString;
+	
+	if(tipo == true){ tipoString = "Normal";}
+    else {tipoString = "TiempoReal";}
+	string estadoString;
+	if(estado == true){ estadoString = "En Ejecucion";}
+    else {estadoString = "Parado";}
+	cout << left << setw(10) << PID
+         << setw(15) << nombre
+         << setw(20) << tipoString
+         << setw(20) << estadoString
+         << setw(10) << prioridad
+         << endl;
+}
 //Gets y sets
 void Proceso::setPrioridad(int prioridad){
 	this->prioridad = prioridad;
@@ -83,4 +98,7 @@ int Proceso::getPrioridad(){
 
 bool Proceso::getTipo(){
 	return tipo;
+}
+void Proceso::setEstado(bool estado){
+	this->estado=estado;
 }

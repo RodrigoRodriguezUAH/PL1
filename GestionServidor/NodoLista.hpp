@@ -1,21 +1,14 @@
-#ifndef NODOLISTA_HPP
-#define NODOLISTA_HPP
-
+#include <iostream>
 #include "Proceso.hpp"
+using namespace std;
+class NodoLista {
 
-class NodoLista{
-    public:
-        NodoLista(Proceso* p);
-        ~NodoLista();
-        
-    private:
-        Proceso* proceso;
-        NodoLista* siguiente;
-        NodoLista* anterior; //Doblemente enlazada
-        
-        friend class Lista;
+public:
+    NodoLista(Proceso* p, NodoLista* sig=NULL);
+	~NodoLista();
+private:
+    Proceso* proceso;
+    NodoLista* siguiente;
+	friend class Lista;
 };
-
 typedef NodoLista* pnodoLista;
-
-#endif // NODOLISTA_HPP

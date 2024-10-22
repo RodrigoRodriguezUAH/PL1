@@ -1,19 +1,17 @@
-#ifndef LISTA_HPP
-#define LISTA_HPP
-
 #include "NodoLista.hpp"
 
-class Lista{
-    public:
-        Lista();
-        ~Lista();
-		void insertar();
-		void extraer();
-		void mostrar();
-
-    private:
-        pnodoLista Primero;
-		pnodoLista Ultimo;
+class Lista {
+private:
+    NodoLista* primero;
+	NodoLista* ultimo;
+	int longitud;
+public:
+    Lista();
+    ~Lista();
+    void insertarInicio(Proceso* p);
+    void insertarFinal(Proceso* p);
+    void eliminar(Proceso* p);
+    void mostrar();
+	int get_longitud();
+	
 };
-
-#endif // LISTA_HPP

@@ -95,10 +95,10 @@ int main(int argc, char** argv){
                  gestor.muestraProcesosTiempoReal();
                 break;
             case 'K':
-                // gestor.buscarProcesos();
+                 gestor.buscarProcesos();
                 break;
             case 'L':
-                // gestor.buscarProcesoPorNombreUsuario();
+                 gestor.buscarProcesoPorNombreUsuario();
                 break;
             case 'M':
                 // gestor.eliminarProcesoPorPID();

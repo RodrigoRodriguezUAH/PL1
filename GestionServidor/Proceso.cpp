@@ -76,7 +76,7 @@ void Proceso::mostrar_proceso_cola(){
     else {tipoString = "en tiempo real";}
     
     string estadoString;
-    if(estado == true){ estadoString = "ejecución";}
+    if(estado == true){ estadoString = "ejecucion";}
     else {estadoString = "parado";}
     
     cout << "El proceso cuyo PID es: " << PID << " es de tipo " << tipoString << ", su estado es " 
@@ -104,7 +104,9 @@ void Proceso::mostrar_proceso_lista(){
 void Proceso::setPrioridad(int prioridad){
 	this->prioridad = prioridad;
 }
-
+int Proceso::getPID(){
+	return PID;
+}
 int Proceso::getPrioridad(){
 	return prioridad;
 }
@@ -114,5 +116,8 @@ bool Proceso::getTipo(){
 }
 void Proceso::setEstado(bool estado){
 	this->estado = estado;
+}
+string Proceso::getNombre(){
+	return nombre;
 }
 

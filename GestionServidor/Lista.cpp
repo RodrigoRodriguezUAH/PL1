@@ -19,8 +19,9 @@ int Lista::get_longitud(){return longitud;}
 
 void Lista::insertarInicio(Proceso* p) {
     pnodoLista nuevo = new NodoLista(p);
-    nuevo->siguiente = primero;
+    primero->siguiente=nuevo;
     primero = nuevo;
+	nuevo->siguiente=nullptr;
 	p->setEstado(true);
 	longitud++;
 }
@@ -65,4 +66,39 @@ void Lista::eliminar(Proceso* p) {
             delete temp;
         }
     }
+}
+void Lista::MenorPrioridad(){
+        int minimo = ultimo->proceso->getPrioridad();
+        pnodoLista aux = ultimo;
+		pnodoLista temp = ultimo;
+        while(aux){
+			if(aux->proceso->getPrioridad()<minimo){
+				minimo=aux->proceso->getPrioridad();
+				temp=aux;
+			}
+			aux=aux->siguiente;
+		}
+			temp->proceso->mostrar_proceso_cola();
+    }
+void Lista::MayorPrioridad(){
+		int maximo = ultimo->proceso->getPrioridad();
+        pnodoLista aux = ultimo;
+		pnodoLista temp = ultimo;
+        while(aux){
+			if(aux->proceso->getPrioridad()>maximo){
+				maximo=aux->proceso->getPrioridad();
+				temp=aux;
+			}
+			aux=aux->siguiente;
+		}
+			temp->proceso->mostrar_proceso_cola();
+}
+void Lista::busquedaNombres(string nombre){
+	pnodoLista aux=ultimo;
+	while(aux){
+		if(aux->proceso->getNombre()==nombre){
+				aux->proceso->mostrar_proceso_cola();
+		}
+		aux=aux->siguiente;
+	}
 }

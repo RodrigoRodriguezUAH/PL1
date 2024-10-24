@@ -17,6 +17,9 @@ class Lista {
 		void eliminar(Proceso* p);
 		void mostrar();
 		int get_longitud();
+		void MayorPrioridad();
+		void MenorPrioridad();
+		void busquedaNombres(string nombre);
 };
 
 #endif

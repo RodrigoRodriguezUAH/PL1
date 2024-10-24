@@ -125,3 +125,22 @@ void Gestor::muestraProcesosTiempoReal(){
 	cout << "Lista de procesos en Tiempo Real" << endl;
 	Treal.mostrar();
 }
+void Gestor::buscarProcesos(){
+	cout<<"Normal menor prioridad-> "; 
+	normal.MenorPrioridad();
+	cout<<endl;
+	cout<<"Tiempo real mayor prioridad-> ";
+	Treal.MayorPrioridad();
+	cout<<endl;
+}
+void Gestor::buscarProcesoPorNombreUsuario(){
+string nombre;
+cout<<"Introduce el nombre de usuario: ";
+cin>>nombre;
+	cout<<"Procesos en lista normal-> "<<endl;
+	normal.busquedaNombres(nombre);
+	cout<<endl;
+	cout<<"Procesos en lista Tiempo Real-> "<<endl;
+	Treal.busquedaNombres(nombre);
+	cout<<endl;
+}

@@ -7,18 +7,9 @@ using namespace std;
 //Variables globales
 int numbers[49]; //Lista de PIDs creados
 int currentIndex; //Variable que contabiliza el nº de PIDs creados
-bool resetear; //Variable que indica si se puede resetear
+
 //Lista de los nombres de usuario ficticios que tendran los procesos
 string nombres[10] = {"Ana","Luis","Maria","Pedro","Sofia","Javier","Lucia","Carlos","Marta","Andres"};
-//Funcion global Reset para si queremos que se reinicien los procesos
-void resetProcesos(){
-	if(resetear){
-		fill(begin(numbers), end(numbers), 0); //Llena la lista de 0
-		currentIndex = 0; //Reinicia el indice
-		resetear = false; //Indica que no se debe resetear de nuevo
-	}
-}
-
 
 //Metodos
 Proceso::Proceso(){
@@ -47,11 +38,8 @@ int Proceso::generar_PID(){
 	//Se llena la lista con los PIDs
 	for (int i = 0; i < 49; ++i) {numbers[i] = 300 + i;}
 	//Si el contador no ha llegado al limite no hay problema
-	if (currentIndex < 49) {
-		resetear = true; //Permite hacer un reseteo
-		return numbers[currentIndex++];
-	}
-	else throw out_of_range("Limite de procesos alcanzado, resetea el programa para poder generar más.");
+	if (currentIndex < 49) {return numbers[currentIndex++];}
+	else throw out_of_range("Limite de procesos alcanzado, resetea el programa para poder generar mas.");
 }
 
 int Proceso::generar_prioridad(){
@@ -121,3 +109,8 @@ string Proceso::getNombre(){
 	return nombre;
 }
 
+//Funcion reset para reiniciar la lista de procesos
+void Proceso::resetProcesos(){
+	for(int i = 0; i < 49; i++){numbers[i] = 0;} //Llena la lista de 0
+	currentIndex = 0; //Reinicia el indice
+}

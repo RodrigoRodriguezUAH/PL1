@@ -1,6 +1,8 @@
 #include "Gestor.hpp"
-#include <iostream>
-using namespace std;
+
+//Variable que indica si se puede resetear
+bool resetear = false; 
+
 Gestor::Gestor(){
 	Pila pila;
     Cola GPU0, GPU1, GPU2, GPU3;
@@ -35,8 +37,9 @@ int Gestor::ProcesosEnGPU3(){
 //Pilas
 void Gestor::genera12Procesos(){
 	try{
+		if(!resetear){resetear = true;} //Se permite resetear porque existen procesos
 		if(pila.getLongitud() < 48){
-			for (int i=0; i<12; i++){
+			for (int i = 0; i < 12; i++){
 				Proceso* p = new Proceso();
 				pila.insertar(p);
 			}
@@ -125,6 +128,7 @@ void Gestor::muestraProcesosTiempoReal(){
 	cout << "Lista de procesos en Tiempo Real" << endl;
 	Treal.mostrar();
 }
+
 void Gestor::buscarProcesos(){
 	cout<<"Normal menor prioridad-> "; 
 	normal.MenorPrioridad();
@@ -134,77 +138,119 @@ void Gestor::buscarProcesos(){
 	cout<<endl;
 }
 void Gestor::buscarProcesoPorNombreUsuario(){
-string nombre;
-cout<<"Introduce el nombre de usuario: ";
-cin>>nombre;
-	cout<<"Procesos en lista normal-> "<<endl;
+	string nombre;
+	cout << "Introduce el nombre de usuario: ";
+	cin >> nombre;
+	cout << "Procesos en lista normal: " << endl;
+	
 	cout << left << setw(10) << "PID"
          << setw(15) << "Usuario"
          << setw(20) << "Tipo de Proceso"
          << setw(20) << "Estado"
          << setw(10) << "Prioridad"
          << endl;
+	
 	normal.busquedaNombres(nombre);
-	cout<<endl;
-	cout<<"Procesos en lista Tiempo Real-> "<<endl;
+	cout << endl;
+	cout << "Procesos en lista Tiempo Real: " << endl;
 	Treal.busquedaNombres(nombre);
-	cout<<endl;
+	cout << endl;
 }
+
 void Gestor::eliminarProcesoPorPID(){
 	int PID;
-	cout<<"Introduce PID: ";
-	cin>>PID;
-	try {
-		Proceso* eliminado= normal.eliminar(PID);
-         pila.insertar(eliminado);
-		 cout << left << setw(10) << "PID"
-         << setw(15) << "Usuario"
-         << setw(20) << "Tipo de Proceso"
-         << setw(20) << "Estado"
-         << setw(10) << "Prioridad"
-         << endl;
-		 eliminado->setEstado(false);
-		 eliminado->mostrar_proceso_lista();
-    } catch (const runtime_error& e) {
-		Proceso* eliminado=Treal.eliminar(PID);
-		eliminado->setEstado(false);
-        pila.insertar(eliminado);
-		cout << left << setw(10) << "PID"
-         << setw(15) << "Usuario"
-         << setw(20) << "Tipo de Proceso"
-         << setw(20) << "Estado"
-         << setw(10) << "Prioridad"
-         << endl;
-		 eliminado->mostrar_proceso_lista();
+	cout << "Introduce PID: ";
+	cin >> PID;
+	try { //Intenta ejecutar
+		if(normal.contiene(PID)){ //Comprueba si el proceso esta en la lista Normal
+			Proceso* eliminado = normal.eliminar(PID);
+			eliminado->setEstado(false);
+			pila.insertar(eliminado); //Se debe insertar eñ proceso sacado de lista en la pila
+			//Mostrar elemento eliminado
+			cout << left << setw(10) << "PID"
+				 << setw(15) << "Usuario"
+				 << setw(20) << "Tipo de Proceso"
+				 << setw(20) << "Estado"
+				 << setw(10) << "Prioridad"
+				 << endl;
+			eliminado->mostrar_proceso_lista();
+		} else { //Si no esta en la normal, revisa la de Tiempo Real
+			Proceso* eliminado = Treal.eliminar(PID);
+			eliminado->setEstado(false);
+			pila.insertar(eliminado);
+			cout << left << setw(10) << "PID"
+				 << setw(15) << "Usuario"
+				 << setw(20) << "Tipo de Proceso"
+				 << setw(20) << "Estado"
+				 << setw(10) << "Prioridad"
+				 << endl;
+			 eliminado->mostrar_proceso_lista();
+		}
+	} catch (const out_of_range& e) { //Error por PID erroneo
+		cout << e.what() << endl;
     }
 }
 void Gestor::cambiarPrioridadProcesoPorPID(){
 	int prioridad;
 	int PID;
-	cout<<"Introduce PID: ";
-	cin>>PID;
-	cout<<"Introduce la nueva prioridad: ";
-	cin>>prioridad;
+	cout << "Introduce PID: ";
+	cin >> PID;
+	cout << "Introduce la nueva prioridad: ";
+	cin >> prioridad;
 	
-	try{
-		Proceso* cambiar=normal.cambiarPrioridad(PID,prioridad);
-		 cout << left << setw(10) << "PID"
-         << setw(15) << "Usuario"
-         << setw(20) << "Tipo de Proceso"
-         << setw(20) << "Estado"
-         << setw(10) << "Prioridad"
-         << endl;
-		 cambiar->mostrar_proceso_lista();
-		 
-	}
-	catch( const runtime_error& e){
-		Proceso* cambiar=Treal.cambiarPrioridad(PID,prioridad);
-		cout << left << setw(10) << "PID"
-         << setw(15) << "Usuario"
-         << setw(20) << "Tipo de Proceso"
-         << setw(20) << "Estado"
-         << setw(10) << "Prioridad"
-         << endl;
-		 cambiar->mostrar_proceso_lista();
+	try{ //Comprobar si el PID es valido
+		if(normal.contiene(PID)){
+			Proceso* cambiar = normal.cambiarPrioridad(PID,prioridad);
+			 cout << left << setw(10) << "PID"
+				  << setw(15) << "Usuario"
+				  << setw(20) << "Tipo de Proceso"
+				  << setw(20) << "Estado"
+				  << setw(10) << "Prioridad"
+				  << endl;
+			 cambiar->mostrar_proceso_lista();
+		} else {
+			Proceso* cambiar=Treal.cambiarPrioridad(PID,prioridad);
+			cout << left << setw(10) << "PID"
+				 << setw(15) << "Usuario"
+				 << setw(20) << "Tipo de Proceso"
+				 << setw(20) << "Estado"
+				 << setw(10) << "Prioridad"
+				 << endl;
+			 cambiar->mostrar_proceso_lista();
 		}
+		 
+	} catch (const out_of_range& e) { //Error si el PID no existe
+		cout << e.what() << endl;
+	}
 }
+
+//Reiniciar programa
+void Gestor::reiniciar(){ 
+	//Comprueba si existe algun proceso en alguna de las estructuras y lo vacia ademas de resetear procesos
+	if(resetear){
+		if(pila.getLongitud() > 0){
+			pila.cima()->resetProcesos();
+			pila.vaciar();
+		}
+		if(!GPU0.esVacia()){
+			GPU0.desencolar()->resetProcesos();
+			GPU0.vaciar();
+		}
+		if(!GPU1.esVacia()){
+			GPU1.desencolar()->resetProcesos();
+			GPU1.vaciar();
+		}
+		if(!GPU2.esVacia()){
+			GPU2.desencolar()->resetProcesos();
+			GPU2.vaciar();
+		}
+		if(!GPU3.esVacia()){
+			GPU3.desencolar()->resetProcesos();
+			GPU3.vaciar();
+		}
+		//Treal.vaciar();
+		//Normal.vaciar();
+	}
+	resetear = false; //Una vez reseteado no se puede resetear hasta que se hayan vuelto a generar
+}
+

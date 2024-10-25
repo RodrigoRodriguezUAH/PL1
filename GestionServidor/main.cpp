@@ -107,7 +107,7 @@ int main(int argc, char** argv){
                 gestor.cambiarPrioridadProcesoPorPID();
                 break;
             case 'O':
-                // gestor.reiniciar();
+                gestor.reiniciar();
                 break;
             case 'P':
                 //...;

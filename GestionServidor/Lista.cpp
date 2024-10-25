@@ -1,11 +1,9 @@
 #include "Lista.hpp"
-#include <iostream>
-#include <stdexcept>
-using namespace std;
+
 Lista::Lista(){
 	primero = NULL;
 	ultimo = NULL;
-	longitud=0;
+	longitud = 0;
 }
 
 Lista::~Lista() {
@@ -21,9 +19,9 @@ int Lista::get_longitud(){return longitud;}
 
 void Lista::insertarInicio(Proceso* p) {
     pnodoLista nuevo = new NodoLista(p);
-    primero->siguiente=nuevo;
+    primero->siguiente = nuevo;
     primero = nuevo;
-	nuevo->siguiente=nullptr;
+	nuevo->siguiente = nullptr;
 	p->setEstado(true);
 	longitud++;
 }
@@ -44,91 +42,114 @@ void Lista::mostrar(){
          << setw(20) << "Estado"
          << setw(10) << "Prioridad"
          << endl;
+	
 	while(aux){
 		aux->proceso->mostrar_proceso_lista();
 		aux = aux->siguiente;
     }
 }
-Proceso* Lista::cambiarPrioridad(int PDI,int prioridad){
-		pnodoLista aux=ultimo;
-		if(ultimo->proceso->getPID()==PDI){
+Proceso* Lista::cambiarPrioridad(int PDI, int prioridad){
+		pnodoLista aux = ultimo;
+		if(ultimo->proceso->getPID() == PDI){
 			ultimo->proceso->mostrar_proceso_lista();
 			ultimo->proceso->setPrioridad(prioridad);
 			return ultimo->proceso;
 		}
 		
 		while(aux){
-			if(aux->proceso->getPID()==PDI){
+			if(aux->proceso->getPID() == PDI){
 				aux->proceso->mostrar_proceso_lista();
 				aux->proceso->setPrioridad(prioridad);
 				return aux->proceso;
 			}
-			aux=aux->siguiente;
+			aux = aux->siguiente;
 		}
-		throw runtime_error("No se encuentra en esta lista, buscando en la otra...");
+		throw out_of_range("El proceso por ese PID no existe en la lista, intentelo con otro PID.");
 }
+
 Proceso* Lista::eliminar(int PID) {
-	pnodoLista aux=ultimo;
-	pnodoLista temp=nullptr;
+	pnodoLista aux = ultimo;
+	pnodoLista temp = nullptr;
 	pnodoLista anterior;
 	
-	if(ultimo->proceso->getPID()==PID){
-		ultimo=aux->siguiente;
-		temp=aux;
+	if(ultimo->proceso->getPID() == PID){
+		ultimo = aux->siguiente;
+		temp = aux;
 		delete aux;
 		return temp->proceso;
 	}
 	while(aux){
-		if(aux->proceso->getPID()==PID){
-			temp=aux;
+		if(aux->proceso->getPID() == PID){
+			temp = aux;
 			anterior->siguiente = aux->siguiente;
 			delete aux;
 			longitud--;
 			return temp->proceso;
 		}
-		anterior=aux;
-		aux=aux->siguiente;
+		anterior = aux;
+		aux = aux->siguiente;
 	}
-	throw runtime_error("No se encuentra en esta lista, buecando en la otra..."); 
+	throw out_of_range("El proceso por ese PID no existe, intentelo con otro PID."); 
 }
-void Lista::MenorPrioridad(){
-        int minimo = ultimo->proceso->getPrioridad();
-        pnodoLista aux = ultimo;
-		pnodoLista temp = ultimo;
-        while(aux){
-			if(aux->proceso->getPrioridad()<minimo){
-				minimo=aux->proceso->getPrioridad();
-				temp=aux;
-			}
-			aux=aux->siguiente;
-		}
-			temp->proceso->mostrar_proceso_cola();
-    }
-void Lista::MayorPrioridad(){
-		int maximo = ultimo->proceso->getPrioridad();
-        pnodoLista aux = ultimo;
-		pnodoLista temp = ultimo;
-        while(aux){
-			if(aux->proceso->getPrioridad()>maximo){
-				maximo=aux->proceso->getPrioridad();
-				temp=aux;
-			}
-			aux=aux->siguiente;
-		}
-			temp->proceso->mostrar_proceso_cola();
-}
-void Lista::busquedaNombres(string nombre){
-	pnodoLista aux=ultimo;
+
+bool Lista::contiene(int PID){
+	pnodoLista aux = ultimo;
 	while(aux){
-		if(aux->proceso->getNombre()==nombre){
-				aux->proceso->mostrar_proceso_lista();
+		if(aux->proceso->getPID() == PID){return true;}
+		aux = aux->siguiente;
+	}
+	return false;
+}
+
+void Lista::MenorPrioridad(){
+	int minimo = ultimo->proceso->getPrioridad();
+	pnodoLista aux = ultimo;
+	pnodoLista temp = ultimo;
+	while(aux){
+		if(aux->proceso->getPrioridad() < minimo){
+			minimo = aux->proceso->getPrioridad();
+			temp = aux;
 		}
-		aux=aux->siguiente;
+		aux = aux->siguiente;
+	}
+	temp->proceso->mostrar_proceso_cola();
+}
+
+void Lista::MayorPrioridad(){
+	int maximo = ultimo->proceso->getPrioridad();
+	pnodoLista aux = ultimo;
+	pnodoLista temp = ultimo;
+	while(aux){
+		if(aux->proceso->getPrioridad() > maximo){
+			maximo = aux->proceso->getPrioridad();
+			temp = aux;
+		}
+		aux = aux->siguiente;
+	}
+	temp->proceso->mostrar_proceso_cola();
+}
+
+void Lista::busquedaNombres(string nombre){
+	pnodoLista aux = ultimo;
+	while(aux){
+		if(aux->proceso->getNombre() == nombre){aux->proceso->mostrar_proceso_lista();}
+		aux = aux->siguiente;
 	}
 }
+
 Proceso* Lista::getPrimero(){
 	return primero->proceso;
 }
+
 Proceso* Lista::getUltimo(){
 	return ultimo->proceso;
+}
+
+void Lista::vaciar(){
+    pnodoLista actual = primero;
+    while (actual != nullptr) {
+        pnodoLista temp = actual;
+        actual = actual->siguiente;
+        delete temp;
+    }
 }

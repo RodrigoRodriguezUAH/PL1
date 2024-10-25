@@ -23,7 +23,8 @@ class Lista {
 		Proceso* getPrimero();
 		Proceso* getUltimo();
 		Proceso* cambiarPrioridad(int PDI,int prioridad);
-		
+		bool contiene(int PID);
+		void vaciar();
 };
 
 #endif

@@ -30,6 +30,9 @@ class Gestor{
 		void muestraProcesosTiempoReal();
 		void buscarProcesos();
 		void buscarProcesoPorNombreUsuario();
+		void eliminarProcesoPorPID();
+		void mostrarPrimeroUltimo();
+		void cambiarPrioridadProcesoPorPID();
     private:
         Pila pila;
         Cola GPU0, GPU1, GPU2, GPU3;

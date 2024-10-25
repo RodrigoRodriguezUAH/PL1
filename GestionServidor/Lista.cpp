@@ -1,5 +1,7 @@
 #include "Lista.hpp"
 #include <iostream>
+#include <stdexcept>
+using namespace std;
 Lista::Lista(){
 	primero = NULL;
 	ultimo = NULL;
@@ -47,25 +49,47 @@ void Lista::mostrar(){
 		aux = aux->siguiente;
     }
 }
-
-void Lista::eliminar(Proceso* p) {
-    if (primero == nullptr) return;
-
-    if (primero->proceso == p) {
-        NodoLista* temp = primero;
-        primero = primero->siguiente;
-        delete temp;
-    } else {
-        NodoLista* actual = ultimo;
-        while (actual->siguiente != nullptr && actual->proceso != p) {
-            actual = actual->siguiente;
-        }
-        if (actual->siguiente != nullptr) {
-            NodoLista* temp = actual->siguiente;
-            actual->siguiente=(temp->siguiente);
-            delete temp;
-        }
-    }
+Proceso* Lista::cambiarPrioridad(int PDI,int prioridad){
+		pnodoLista aux=ultimo;
+		if(ultimo->proceso->getPID()==PDI){
+			ultimo->proceso->mostrar_proceso_lista();
+			ultimo->proceso->setPrioridad(prioridad);
+			return ultimo->proceso;
+		}
+		
+		while(aux){
+			if(aux->proceso->getPID()==PDI){
+				aux->proceso->mostrar_proceso_lista();
+				aux->proceso->setPrioridad(prioridad);
+				return aux->proceso;
+			}
+			aux=aux->siguiente;
+		}
+		throw runtime_error("No se encuentra en esta lista, buscando en la otra...");
+}
+Proceso* Lista::eliminar(int PID) {
+	pnodoLista aux=ultimo;
+	pnodoLista temp=nullptr;
+	pnodoLista anterior;
+	
+	if(ultimo->proceso->getPID()==PID){
+		ultimo=aux->siguiente;
+		temp=aux;
+		delete aux;
+		return temp->proceso;
+	}
+	while(aux){
+		if(aux->proceso->getPID()==PID){
+			temp=aux;
+			anterior->siguiente = aux->siguiente;
+			delete aux;
+			longitud--;
+			return temp->proceso;
+		}
+		anterior=aux;
+		aux=aux->siguiente;
+	}
+	throw runtime_error("No se encuentra en esta lista, buecando en la otra..."); 
 }
 void Lista::MenorPrioridad(){
         int minimo = ultimo->proceso->getPrioridad();
@@ -97,8 +121,14 @@ void Lista::busquedaNombres(string nombre){
 	pnodoLista aux=ultimo;
 	while(aux){
 		if(aux->proceso->getNombre()==nombre){
-				aux->proceso->mostrar_proceso_cola();
+				aux->proceso->mostrar_proceso_lista();
 		}
 		aux=aux->siguiente;
 	}
+}
+Proceso* Lista::getPrimero(){
+	return primero->proceso;
+}
+Proceso* Lista::getUltimo(){
+	return ultimo->proceso;
 }

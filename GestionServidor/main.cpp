@@ -101,10 +101,10 @@ int main(int argc, char** argv){
                  gestor.buscarProcesoPorNombreUsuario();
                 break;
             case 'M':
-                // gestor.eliminarProcesoPorPID();
+                gestor.eliminarProcesoPorPID();
                 break;
             case 'N':
-                // gestor.cambiarPrioridadProcesoPorPID();
+                gestor.cambiarPrioridadProcesoPorPID();
                 break;
             case 'O':
                 // gestor.reiniciar();

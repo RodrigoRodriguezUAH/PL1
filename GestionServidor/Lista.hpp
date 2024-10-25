@@ -14,12 +14,16 @@ class Lista {
 		~Lista();
 		void insertarInicio(Proceso* p);
 		void insertarFinal(Proceso* p);
-		void eliminar(Proceso* p);
+		Proceso* eliminar(int PID);
 		void mostrar();
 		int get_longitud();
 		void MayorPrioridad();
 		void MenorPrioridad();
 		void busquedaNombres(string nombre);
+		Proceso* getPrimero();
+		Proceso* getUltimo();
+		Proceso* cambiarPrioridad(int PDI,int prioridad);
+		
 };
 
 #endif

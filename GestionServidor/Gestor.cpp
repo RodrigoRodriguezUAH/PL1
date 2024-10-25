@@ -138,9 +138,73 @@ string nombre;
 cout<<"Introduce el nombre de usuario: ";
 cin>>nombre;
 	cout<<"Procesos en lista normal-> "<<endl;
+	cout << left << setw(10) << "PID"
+         << setw(15) << "Usuario"
+         << setw(20) << "Tipo de Proceso"
+         << setw(20) << "Estado"
+         << setw(10) << "Prioridad"
+         << endl;
 	normal.busquedaNombres(nombre);
 	cout<<endl;
 	cout<<"Procesos en lista Tiempo Real-> "<<endl;
 	Treal.busquedaNombres(nombre);
 	cout<<endl;
+}
+void Gestor::eliminarProcesoPorPID(){
+	int PID;
+	cout<<"Introduce PID: ";
+	cin>>PID;
+	try {
+		Proceso* eliminado= normal.eliminar(PID);
+         pila.insertar(eliminado);
+		 cout << left << setw(10) << "PID"
+         << setw(15) << "Usuario"
+         << setw(20) << "Tipo de Proceso"
+         << setw(20) << "Estado"
+         << setw(10) << "Prioridad"
+         << endl;
+		 eliminado->setEstado(false);
+		 eliminado->mostrar_proceso_lista();
+    } catch (const runtime_error& e) {
+		Proceso* eliminado=Treal.eliminar(PID);
+		eliminado->setEstado(false);
+        pila.insertar(eliminado);
+		cout << left << setw(10) << "PID"
+         << setw(15) << "Usuario"
+         << setw(20) << "Tipo de Proceso"
+         << setw(20) << "Estado"
+         << setw(10) << "Prioridad"
+         << endl;
+		 eliminado->mostrar_proceso_lista();
+    }
+}
+void Gestor::cambiarPrioridadProcesoPorPID(){
+	int prioridad;
+	int PID;
+	cout<<"Introduce PID: ";
+	cin>>PID;
+	cout<<"Introduce la nueva prioridad: ";
+	cin>>prioridad;
+	
+	try{
+		Proceso* cambiar=normal.cambiarPrioridad(PID,prioridad);
+		 cout << left << setw(10) << "PID"
+         << setw(15) << "Usuario"
+         << setw(20) << "Tipo de Proceso"
+         << setw(20) << "Estado"
+         << setw(10) << "Prioridad"
+         << endl;
+		 cambiar->mostrar_proceso_lista();
+		 
+	}
+	catch( const runtime_error& e){
+		Proceso* cambiar=Treal.cambiarPrioridad(PID,prioridad);
+		cout << left << setw(10) << "PID"
+         << setw(15) << "Usuario"
+         << setw(20) << "Tipo de Proceso"
+         << setw(20) << "Estado"
+         << setw(10) << "Prioridad"
+         << endl;
+		 cambiar->mostrar_proceso_lista();
+		}
 }

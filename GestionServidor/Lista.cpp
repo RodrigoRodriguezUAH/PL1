@@ -9,7 +9,7 @@ Lista::Lista(){
 Lista::~Lista(){}
 
 //Metodos para insertar elementos en la lista
-void Lista::insertarInicio(Proceso* p) {
+/*void Lista::insertarInicio(Proceso* p) {
     pnodoLista nuevo = new NodoLista(p);
     primero->siguiente = nuevo;
     primero = nuevo;
@@ -21,6 +21,21 @@ void Lista::insertarInicio(Proceso* p) {
 void Lista::insertarFinal(Proceso* p){
 	pnodoLista nuevo = new NodoLista(p);
 	nuevo->siguiente = ultimo;
+	ultimo = nuevo;
+	p->setEstado(true);
+	longitud++;
+}*/
+void Lista::insertarInicio(Proceso* p) {
+    pnodoLista nuevo = new NodoLista(p);
+    nuevo->siguiente = primero;
+    primero = nuevo;
+	p->setEstado(true);
+	longitud++;
+}
+
+void Lista::insertarFinal(Proceso* p){
+	pnodoLista nuevo = new NodoLista(p);
+	ultimo->siguiente = nuevo;
 	ultimo = nuevo;
 	p->setEstado(true);
 	longitud++;
@@ -151,10 +166,12 @@ int Lista::getLongitud(){
 
 //Los metodos vaciar actuan como destructores
 void Lista::vaciar(){
-    pnodoLista actual = primero;
+    NodoLista* actual =new NodoLista(); 
+	actual = primero;
     while (actual != nullptr) {
         pnodoLista temp = actual;
         actual = actual->siguiente;
+		longitud --;
         delete temp;
     }
 }

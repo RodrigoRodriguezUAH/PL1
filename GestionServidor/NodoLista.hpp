@@ -4,7 +4,8 @@
 #include "Proceso.hpp"
 
 class NodoLista {
-	public:
+public:
+		NodoLista();
 		NodoLista(Proceso* p, NodoLista* sig=NULL);
 		~NodoLista();
 		

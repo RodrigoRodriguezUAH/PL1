@@ -105,7 +105,7 @@ int Gestor::ProcesosEnListaTiempoReal(){
 		return Treal.getLongitud();
 }
 
-void Gestor::enlistarProcesos(){
+/*void Gestor::enlistarProcesos(){
 		while(GPU0.getLongitud()>0){
 			normal.insertarFinal(GPU0.desencolar());
 		}
@@ -118,8 +118,21 @@ void Gestor::enlistarProcesos(){
 		while(GPU3.getLongitud()>0){
 			Treal.insertarFinal(GPU3.desencolar());
 		}
+}*/
+void Gestor::enlistarProcesos(){
+		while(GPU0.getLongitud()>0){
+			normal.insertarInicio(GPU0.desencolar());
+		}
+		while(GPU1.getLongitud()>0){
+			normal.insertarInicio(GPU1.desencolar());
+		}
+		while(GPU2.getLongitud()>0){
+			Treal.insertarInicio(GPU2.desencolar());
+		}
+		while(GPU3.getLongitud()>0){
+			Treal.insertarInicio(GPU3.desencolar());
+		}
 }
-
 void Gestor::muestraProcesosNormal(){
 	cout << "Lista de procesos Normales" << endl;
 	normal.mostrar();
@@ -252,11 +265,11 @@ void Gestor::reiniciar(){
 			GPU3.vaciar();
 		}
 		if(Treal.getLongitud() > 0){
-			Treal.getPrimero()->resetProcesos();
+			//Treal.getUltimo()->resetProcesos();
 			Treal.vaciar();
 		}
 		if(normal.getLongitud() > 0){
-			normal.getPrimero()->resetProcesos();
+			//normal.getUltimo()->resetProcesos();
 			normal.vaciar();
 		}
 	}

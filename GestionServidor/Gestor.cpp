@@ -167,7 +167,7 @@ void Gestor::eliminarProcesoPorPID(){
 		if(normal.contiene(PID)){ //Comprueba si el proceso esta en la lista Normal
 			Proceso* eliminado = normal.eliminar(PID);
 			eliminado->setEstado(false);
-			pila.insertar(eliminado); //Se debe insertar eñ proceso sacado de lista en la pila
+			pila.insertar(eliminado); //Se debe insertar el proceso sacado de lista en la pila
 			//Mostrar elemento eliminado
 			cout << left << setw(10) << "PID"
 				 << setw(15) << "Usuario"

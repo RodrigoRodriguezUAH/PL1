@@ -9,8 +9,7 @@ Gestor::Gestor(){
     Lista normal, Treal;
 }
 
-Gestor::~Gestor(){
-}
+Gestor::~Gestor(){}
 
 //Funciones de la pantalla de interfaz
 int Gestor::ProcesosEnPila(){
@@ -99,11 +98,13 @@ void Gestor::borraProcesosColas(){
 
 //Listas
 int Gestor::ProcesosEnListaNormal(){
-	return normal.get_longitud();
+	return normal.getLongitud();
 }
+
 int Gestor::ProcesosEnListaTiempoReal(){
-		return Treal.get_longitud();
+		return Treal.getLongitud();
 }
+
 void Gestor::enlistarProcesos(){
 		while(GPU0.getLongitud()>0){
 			normal.insertarFinal(GPU0.desencolar());
@@ -137,6 +138,7 @@ void Gestor::buscarProcesos(){
 	Treal.MayorPrioridad();
 	cout<<endl;
 }
+
 void Gestor::buscarProcesoPorNombreUsuario(){
 	string nombre;
 	cout << "Introduce el nombre de usuario: ";
@@ -190,6 +192,7 @@ void Gestor::eliminarProcesoPorPID(){
 		cout << e.what() << endl;
     }
 }
+
 void Gestor::cambiarPrioridadProcesoPorPID(){
 	int prioridad;
 	int PID;
@@ -199,7 +202,7 @@ void Gestor::cambiarPrioridadProcesoPorPID(){
 	cin >> prioridad;
 	
 	try{ //Comprobar si el PID es valido
-		if(normal.contiene(PID)){
+		if(normal.contiene(PID)){ //Mira en la lista normal
 			Proceso* cambiar = normal.cambiarPrioridad(PID,prioridad);
 			 cout << left << setw(10) << "PID"
 				  << setw(15) << "Usuario"
@@ -208,8 +211,8 @@ void Gestor::cambiarPrioridadProcesoPorPID(){
 				  << setw(10) << "Prioridad"
 				  << endl;
 			 cambiar->mostrar_proceso_lista();
-		} else {
-			Proceso* cambiar=Treal.cambiarPrioridad(PID,prioridad);
+		} else { //Si no esta en la normal mira en la de Treal
+			Proceso* cambiar = Treal.cambiarPrioridad(PID,prioridad);
 			cout << left << setw(10) << "PID"
 				 << setw(15) << "Usuario"
 				 << setw(20) << "Tipo de Proceso"
@@ -219,15 +222,15 @@ void Gestor::cambiarPrioridadProcesoPorPID(){
 			 cambiar->mostrar_proceso_lista();
 		}
 		 
-	} catch (const out_of_range& e) { //Error si el PID no existe
+	} catch (const out_of_range& e) { //Error si el PID no existe en ninguna de las listas
 		cout << e.what() << endl;
 	}
 }
 
 //Reiniciar programa
 void Gestor::reiniciar(){ 
-	//Comprueba si existe algun proceso en alguna de las estructuras y lo vacia ademas de resetear procesos
-	if(resetear){
+	//Comprueba si existe algun proceso en alguna de las estructuras y lo vacia despues de resetear los procesos
+	if(resetear){ //El resetear se activa cuando se generan procesos
 		if(pila.getLongitud() > 0){
 			pila.cima()->resetProcesos();
 			pila.vaciar();
@@ -248,8 +251,14 @@ void Gestor::reiniciar(){
 			GPU3.desencolar()->resetProcesos();
 			GPU3.vaciar();
 		}
-		//Treal.vaciar();
-		//Normal.vaciar();
+		if(Treal.getLongitud() > 0){
+			Treal.getPrimero()->resetProcesos();
+			Treal.vaciar();
+		}
+		if(normal.getLongitud() > 0){
+			normal.getPrimero()->resetProcesos();
+			normal.vaciar();
+		}
 	}
 	resetear = false; //Una vez reseteado no se puede resetear hasta que se hayan vuelto a generar
 }

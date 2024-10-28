@@ -20,9 +20,7 @@ Proceso::Proceso(){
     this->estado = false;
 }
 
-Proceso::~Proceso(){
-	
-}
+Proceso::~Proceso(){}
 
 //Metodos generadores de datos
 bool Proceso::generar_bool() {

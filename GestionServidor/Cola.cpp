@@ -6,23 +6,12 @@ Cola::Cola(){
 	longitud = 0;
 }
 
+Cola::~Cola(){}
+
 int Cola::getLongitud(){
     return this->longitud;
 }
-/*
-void Cola::encolar(Proceso* p){
-	pnodoCola siguiente = NULL;
-    pnodoCola nodo = new NodoCola(p, siguiente); 
-	if (!primero){
-		primero = ultimo = nodo;
-		longitud++;
-	} else {
-		ultimo->siguiente = nodo;
-		ultimo = nodo;
-		longitud++;
-	}
-}
-*/
+
 void Cola::encolarOrdenado(Proceso* p){
 	pnodoCola nuevo = new NodoCola(p);
 	pnodoCola actual = primero;
@@ -92,13 +81,7 @@ Proceso* Cola::desencolar(){
 	return p;
 }
 
+//Vaciar actua como destructor
 void Cola::vaciar(){
 	while(primero) desencolar();
 }
-
-Cola::~Cola(){
-	while(primero) vaciar();
-	delete primero;
-	delete ultimo;	
-}
-

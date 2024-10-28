@@ -6,16 +6,15 @@
 class Cola{
     public:
         Cola();
-        ~Cola();
-        void encolar(Proceso* p);
+		~Cola();
 		void encolarOrdenado(Proceso *p);
         Proceso* desencolar();
-		void vaciar();
         void mostrar();
         Proceso* verPrimero();
         int getLongitud();
 		bool esVacia();
-        
+		void vaciar(); //Vaciar actua como destructor
+		
     private:
         pnodoCola primero, ultimo;
         int longitud;

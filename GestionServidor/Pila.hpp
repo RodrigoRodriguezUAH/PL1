@@ -6,13 +6,13 @@
 class Pila{
     public:
         Pila();
-        ~Pila();
+		~Pila();
         void insertar(Proceso* p);
         Proceso* extraer();
         Proceso* cima();
         void mostrar();
         int getLongitud();
-        void vaciar();
+        void vaciar(); //Vaciar actua como destructor
         
     private:
         pnodoPila ultimo;

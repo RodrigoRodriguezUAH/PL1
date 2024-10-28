@@ -5,6 +5,8 @@ Pila::Pila(){
 	longitud = 0;
 }
 
+Pila::~Pila(){}
+
 void Pila::insertar(Proceso* p){
 	pnodoPila nuevo;
 	nuevo = new NodoPila(p, ultimo);
@@ -45,19 +47,8 @@ void Pila::mostrar(){
 int Pila::getLongitud(){
 	return this->longitud;
 }
-	
-Pila::~Pila(){
-    /*
-	pnodoPila aux;
-	while(ultimo){
-		aux = ultimo;
-		ultimo = ultimo->siguiente;
-		delete aux;
-    }*/
-    vaciar();
-    delete ultimo;
-}
 
+//Vaciar actua como destructor
 void Pila::vaciar(){
 	pnodoPila aux;
 	while(ultimo){

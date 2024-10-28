@@ -4,11 +4,6 @@
 #include "NodoLista.hpp"
 
 class Lista {
-	private:
-		NodoLista* primero;
-		NodoLista* ultimo;
-		int longitud;
-		
 	public:
 		Lista();
 		~Lista();
@@ -16,7 +11,7 @@ class Lista {
 		void insertarFinal(Proceso* p);
 		Proceso* eliminar(int PID);
 		void mostrar();
-		int get_longitud();
+		int getLongitud();
 		void MayorPrioridad();
 		void MenorPrioridad();
 		void busquedaNombres(string nombre);
@@ -24,7 +19,12 @@ class Lista {
 		Proceso* getUltimo();
 		Proceso* cambiarPrioridad(int PDI,int prioridad);
 		bool contiene(int PID);
-		void vaciar();
+		void vaciar(); //Vaciar actua como destructor
+		
+	private:
+		NodoLista* primero;
+		NodoLista* ultimo;
+		int longitud;
 };
 
 #endif

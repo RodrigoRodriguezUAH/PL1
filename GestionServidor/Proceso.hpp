@@ -21,7 +21,7 @@ class Proceso{
 		string generar_nombre();
 		int generar_PID();
         bool generar_bool();
-        int generar_prioridad();
+        int generar_prioridad(bool tipo);
 		//Metodos que muestran datos
         void mostrar_proceso();
         void mostrar_proceso_cola();

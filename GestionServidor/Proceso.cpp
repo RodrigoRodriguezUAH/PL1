@@ -2,12 +2,13 @@
 #include <cstdlib>
 #include <iostream>
 #include <iomanip>
+#include <set>
 using namespace std;
 
 //Variables globales
 int numbers[49]; //Lista de PIDs creados
 int currentIndex; //Variable que contabiliza el nº de PIDs creados
-
+set<int> prioridades_generadas;
 //Lista de los nombres de usuario ficticios que tendran los procesos
 string nombres[10] = {"Ana","Luis","Maria","Pedro","Sofia","Javier","Lucia","Carlos","Marta","Andres"};
 
@@ -16,7 +17,7 @@ Proceso::Proceso(){
     this->tipo = generar_bool();
     this->PID = generar_PID();
     this->nombre = generar_nombre();
-    this->prioridad = generar_prioridad();
+    this->prioridad = generar_prioridad(tipo);
     this->estado = false;
 }
 
@@ -40,12 +41,21 @@ int Proceso::generar_PID(){
 	else throw out_of_range("Limite de procesos alcanzado, resetea el programa para poder generar mas.");
 }
 
-int Proceso::generar_prioridad(){
-	bool tipo = generar_bool();
-	if(tipo){
-		return rand()% 39 - 19;
-    } else return rand()%100;
+int Proceso::generar_prioridad(bool tipo){
+	int prioridad;
+	//Si tipo, el minimo es -19, en caso contrario es 0.
+	int min = tipo ? -19 : 0;
+	int max = tipo ? 19 : 99;
+	// Generar número único dentro del rango correspondiente
+    do {
+        prioridad = min + rand() % (max - min + 1);
+    } while (prioridades_generadas.find(prioridad) != prioridades_generadas.end());
+
+    // Añadir el número generado al conjunto
+    prioridades_generadas.insert(prioridad);
+    return prioridad;
 }
+
 
 //Metodos que muestran datos
 void Proceso::mostrar_proceso(){

@@ -265,11 +265,11 @@ void Gestor::reiniciar(){
 			GPU3.vaciar();
 		}
 		if(Treal.getLongitud() > 0){
-			//Treal.getUltimo()->resetProcesos();
+			Treal.getPrimero()->resetProcesos();
 			Treal.vaciar();
 		}
 		if(normal.getLongitud() > 0){
-			//normal.getUltimo()->resetProcesos();
+			normal.getPrimero()->resetProcesos();
 			normal.vaciar();
 		}
 	}

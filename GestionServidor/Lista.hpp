@@ -8,7 +8,7 @@ class Lista {
 		Lista();
 		~Lista();
 		void insertarInicio(Proceso* p);
-		void insertarFinal(Proceso* p);
+		//void insertarFinal(Proceso* p);
 		Proceso* eliminar(int PID);
 		void mostrar();
 		int getLongitud();

@@ -43,7 +43,7 @@ void Lista::insertarFinal(Proceso* p){
 
 //Metodo para mostrar contenido de una lista
 void Lista::mostrar(){
-	pnodoLista aux = ultimo;
+	pnodoLista aux = primero;
 	cout << left << setw(10) << "PID"
          << setw(15) << "Usuario"
          << setw(20) << "Tipo de Proceso"
@@ -59,11 +59,11 @@ void Lista::mostrar(){
 
 //Metodo para cambiar la prioridad de un proceso seleccionado segun su PID, por otra prioridad seleccionada
 Proceso* Lista::cambiarPrioridad(int PDI, int prioridad){
-		pnodoLista aux = ultimo;
-		if(ultimo->proceso->getPID() == PDI){
-			ultimo->proceso->mostrar_proceso_lista();
-			ultimo->proceso->setPrioridad(prioridad);
-			return ultimo->proceso;
+		pnodoLista aux = primero;
+		if(primero->proceso->getPID() == PDI){
+			primero->proceso->mostrar_proceso_lista();
+			primero->proceso->setPrioridad(prioridad);
+			return primero->proceso;
 		}
 		
 		while(aux){
@@ -79,12 +79,12 @@ Proceso* Lista::cambiarPrioridad(int PDI, int prioridad){
 
 //Metodo para eliminar un proceso que tiene un PID seleccionado
 Proceso* Lista::eliminar(int PID) {
-	pnodoLista aux = ultimo;
+	pnodoLista aux = primero;
 	pnodoLista temp = nullptr;
 	pnodoLista anterior;
 	
-	if(ultimo->proceso->getPID() == PID){
-		ultimo = aux->siguiente;
+	if(primero->proceso->getPID() == PID){
+		primero = aux->siguiente;
 		temp = aux;
 		delete aux;
 		return temp->proceso;
@@ -105,7 +105,7 @@ Proceso* Lista::eliminar(int PID) {
 
 //Metodo que busca si existe un elemento con el PID seleccionado
 bool Lista::contiene(int PID){
-	pnodoLista aux = ultimo;
+	pnodoLista aux = primero;
 	while(aux){
 		if(aux->proceso->getPID() == PID){return true;}
 		aux = aux->siguiente;
@@ -115,9 +115,9 @@ bool Lista::contiene(int PID){
 
 //Metodos para buscar el elemento con mayor y menor prioridades
 void Lista::MenorPrioridad(){
-	int minimo = ultimo->proceso->getPrioridad();
-	pnodoLista aux = ultimo;
-	pnodoLista temp = ultimo;
+	int minimo = primero->proceso->getPrioridad();
+	pnodoLista aux = primero;
+	pnodoLista temp = primero;
 	while(aux){
 		if(aux->proceso->getPrioridad() < minimo){
 			minimo = aux->proceso->getPrioridad();
@@ -129,9 +129,9 @@ void Lista::MenorPrioridad(){
 }
 
 void Lista::MayorPrioridad(){
-	int maximo = ultimo->proceso->getPrioridad();
-	pnodoLista aux = ultimo;
-	pnodoLista temp = ultimo;
+	int maximo = primero->proceso->getPrioridad();
+	pnodoLista aux = primero;
+	pnodoLista temp = primero;
 	while(aux){
 		if(aux->proceso->getPrioridad() > maximo){
 			maximo = aux->proceso->getPrioridad();
@@ -144,7 +144,7 @@ void Lista::MayorPrioridad(){
 
 //Metodo para buscar en funcion de los nombres de usuario
 void Lista::busquedaNombres(string nombre){
-	pnodoLista aux = ultimo;
+	pnodoLista aux = primero;
 	while(aux){
 		if(aux->proceso->getNombre() == nombre){aux->proceso->mostrar_proceso_lista();}
 		aux = aux->siguiente;

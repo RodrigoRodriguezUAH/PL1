@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="PL1" Database="" Version="10000">
-  <Project Name="GestionServidor" Path="GestionServidor/GestionServidor.project" Active="No"/>
   <Project Name="PECLGarciaIbanezPedro" Path="PECLGarciaIbanezPedro/PECLGarciaIbanezPedro.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug">

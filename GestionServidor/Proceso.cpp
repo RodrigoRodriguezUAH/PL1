@@ -7,8 +7,9 @@ using namespace std;
 
 //Variables globales
 //Lista de PIDs
-int numeros[49];
-
+int PIDs[] = {300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 
+			  316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331,
+              332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348};
 int contador; //Variable que contabiliza el nº de PIDs creados
 set<int> prioridades_generadas;
 int arrayPrioridades[49]; //Contiene las prioridades que se han creado
@@ -37,10 +38,8 @@ string Proceso::generar_nombre(){
 }
 
 int Proceso::generar_PID(){
-	//Se llena la lista con los PIDs
-	for (int i = 0; i < 49; ++i) {numeros[i] = 300 + i;}
 	//Si el contador no ha llegado al limite no hay problema
-	if (contador < 49) {return numeros[contador++];}
+	if (contador < 49) {return PIDs[contador++];}
 	else throw out_of_range("Limite de procesos alcanzado, resetea el programa para poder generar mas.");
 }
 

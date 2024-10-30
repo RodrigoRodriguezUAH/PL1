@@ -272,7 +272,7 @@ void Gestor::reiniciar(){
 			normal.getPrimero()->resetProcesos();
 			normal.vaciar();
 		}
-	}
 	resetear = false; //Una vez reseteado no se puede resetear hasta que se hayan vuelto a generar
+	}
 }
 

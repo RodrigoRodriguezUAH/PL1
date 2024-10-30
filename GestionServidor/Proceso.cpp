@@ -11,8 +11,7 @@ int PIDs[] = {300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 3
 			  316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331,
               332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348};
 int contador; //Variable que contabiliza el nº de PIDs creados
-set<int> prioridades_generadas;
-int arrayPrioridades[49]; //Contiene las prioridades que se han creado
+set<int> prioridades_generadas; //Contiene las prioridades creadas
 //Lista de los nombres de usuario ficticios que tendran los procesos
 string nombres[10] = {"Ana","Luis","Maria","Pedro","Sofia","Javier","Lucia","Carlos","Marta","Andres"};
 

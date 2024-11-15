@@ -128,7 +128,13 @@ string Proceso::getNombre(){
 
 //Funcion reset para reiniciar la lista de procesos
 void Proceso::resetProcesos(){
-	prioridades_generadas.clear();//Se vacia el set de prioridades
+	//Vaciar los arrays
+	for(int i = -19; prioridadesNormales[i]; i++){
+		prioridadesNormales[i] = 0;
+	}
+	for(int i = 0; prioridadesReales[i]; i++){
+		prioridadesNormales[i] = 0;
+	}
 	contador = 0; //Reinicia el indice
 }
 

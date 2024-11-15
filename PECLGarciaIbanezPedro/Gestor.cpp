@@ -7,6 +7,7 @@ Gestor::Gestor(){
 	Pila pila;
     Cola GPU0, GPU1, GPU2, GPU3;
     Lista normal, Treal;
+	Arbol ABB;
 }
 
 Gestor::~Gestor(){}
@@ -62,6 +63,7 @@ void Gestor::encolarProcesos(){
     Proceso* desplazado;
     while(pila.getLongitud() != 0){
         desplazado = pila.extraer();
+		if(desplazado->getTipo()){desplazado->setPrioridad(desplazado->getPrioridad()+120);}
         if (desplazado->getTipo()){ //Proceso de tipo normal porque estos equivalen a true
             if (GPU0.getLongitud() <= GPU1.getLongitud()){ //Compara longitudes
                 GPU0.encolarOrdenado(desplazado);
@@ -105,20 +107,7 @@ int Gestor::ProcesosEnListaTiempoReal(){
 		return Treal.getLongitud();
 }
 
-/*void Gestor::enlistarProcesos(){
-		while(GPU0.getLongitud()>0){
-			normal.insertarFinal(GPU0.desencolar());
-		}
-		while(GPU1.getLongitud()>0){
-			normal.insertarFinal(GPU1.desencolar());
-		}
-		while(GPU2.getLongitud()>0){
-			Treal.insertarFinal(GPU2.desencolar());
-		}
-		while(GPU3.getLongitud()>0){
-			Treal.insertarFinal(GPU3.desencolar());
-		}
-}*/
+
 void Gestor::enlistarProcesos(){
 		while(GPU0.getLongitud()>0){
 			normal.insertarInicio(GPU0.desencolar());
@@ -276,4 +265,22 @@ void Gestor::reiniciar(){
 	}
 }
 
-
+int Gestor::ProcesosEnArbol(){
+	return 0;
+	}
+void Gestor::crearDibujarABB(){
+		Proceso* raiz=new Proceso();
+		raiz->setPrioridad(100);
+		ABB.insertar(raiz);
+		while(pila.getLongitud()!=0){
+			Proceso* proceso=pila.extraer();
+			if(proceso->getTipo()){proceso->setPrioridad(proceso->getPrioridad()+120);}
+			ABB.insertar(proceso);
+			}
+			ABB.dibujar();
+	}
+	
+	
+	
+	
+	

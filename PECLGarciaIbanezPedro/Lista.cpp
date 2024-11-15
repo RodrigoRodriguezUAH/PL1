@@ -8,23 +8,7 @@ Lista::Lista(){
 
 Lista::~Lista(){}
 
-//Metodos para insertar elementos en la lista
-/*void Lista::insertarInicio(Proceso* p) {
-    pnodoLista nuevo = new NodoLista(p);
-    primero->siguiente = nuevo;
-    primero = nuevo;
-	nuevo->siguiente = nullptr;
-	p->setEstado(true);
-	longitud++;
-}
 
-void Lista::insertarFinal(Proceso* p){
-	pnodoLista nuevo = new NodoLista(p);
-	nuevo->siguiente = ultimo;
-	ultimo = nuevo;
-	p->setEstado(true);
-	longitud++;
-}*/
 void Lista::insertarInicio(Proceso* p) {
     pnodoLista nuevo = new NodoLista(p);
     nuevo->siguiente = primero;
@@ -32,15 +16,7 @@ void Lista::insertarInicio(Proceso* p) {
 	p->setEstado(true);
 	longitud++;
 }
-/*
-void Lista::insertarFinal(Proceso* p){
-	pnodoLista nuevo = new NodoLista(p);
-	ultimo->siguiente = nuevo;
-	ultimo = nuevo;
-	p->setEstado(true);
-	longitud++;
-}
-*/
+
 //Metodo para mostrar contenido de una lista
 void Lista::mostrar(){
 	pnodoLista aux = primero;

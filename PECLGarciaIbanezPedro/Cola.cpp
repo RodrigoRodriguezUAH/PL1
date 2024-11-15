@@ -15,8 +15,6 @@ int Cola::getLongitud(){
 void Cola::encolarOrdenado(Proceso* p){
 	pnodoCola nuevo = new NodoCola(p);
 	pnodoCola actual = primero;
-	//Antes de encolar hay que aumentar la prioridad de los procesos normales
-	if(p->getTipo()){p->setPrioridad(p->getPrioridad()+120);}
 	//Cola vacia
 	if(esVacia()){
 		primero = ultimo = nuevo;

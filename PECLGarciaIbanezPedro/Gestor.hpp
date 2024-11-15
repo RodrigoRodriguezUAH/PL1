@@ -1,7 +1,7 @@
 #include "Pila.hpp"
 #include "Cola.hpp"
 #include "Lista.hpp"
-
+#include "Arbol.hpp"
 class Gestor{
     public:
         Gestor();
@@ -14,6 +14,7 @@ class Gestor{
         int ProcesosEnGPU3();
 		int ProcesosEnListaNormal();
 		int ProcesosEnListaTiempoReal();
+		int ProcesosEnArbol();
         //Metodos ejercicios
         //Pilas
         void genera12Procesos();
@@ -33,6 +34,8 @@ class Gestor{
 		void eliminarProcesoPorPID();
 		void mostrarPrimeroUltimo();
 		void cambiarPrioridadProcesoPorPID();
+		//ABB
+		void crearDibujarABB();
 		//Reiniciar
 		void reiniciar();
 		
@@ -40,4 +43,5 @@ class Gestor{
         Pila pila;
         Cola GPU0, GPU1, GPU2, GPU3;
         Lista normal, Treal;
+		Arbol ABB;
 };

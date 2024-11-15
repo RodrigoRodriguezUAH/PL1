@@ -1,8 +1,5 @@
 #include "Proceso.hpp"
-#include <cstdlib>
-#include <iostream>
-#include <iomanip>
-#include <set>
+
 using namespace std;
 
 //Variables globales
@@ -11,7 +8,8 @@ int PIDs[] = {300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 3
 			  316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331,
               332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348};
 int contador; //Variable que contabiliza el nº de PIDs creados
-set<int> prioridades_generadas; //Contiene las prioridades creadas
+int prioridadesNormales[41]; //Contiene las prioridades de procesos normales
+int prioridadesReales[101]; //Contienen las prioridades de procesos en tiempo real
 //Lista de los nombres de usuario ficticios que tendran los procesos
 string nombres[10] = {"Ana","Luis","Maria","Pedro","Sofia","Javier","Lucia","Carlos","Marta","Andres"};
 
@@ -44,16 +42,26 @@ int Proceso::generar_PID(){
 
 int Proceso::generar_prioridad(bool tipo){
 	int prioridad;
-	//Si tipo, el minimo es -19, en caso contrario es 0.
-	int min = tipo ? -19 : 0;
-	int max = tipo ? 19 : 99;
-	// Generar número único dentro del rango correspondiente
-    do {
-        prioridad = min + rand() % (max - min + 1);
-    } while (prioridades_generadas.find(prioridad) != prioridades_generadas.end());
-
-    // Añadir el número generado al conjunto
-    prioridades_generadas.insert(prioridad);
+	//Si tipo, rango de -19 a 19, sino de 0 a 99
+	if (tipo){
+		//Generar numero random del -19 al 19
+		prioridad = rand()%39 - 19;
+		//Comprobar si esta en el array, si esta descartarlo y generar uno nuevo
+		while(prioridadesNormales[prioridad]){
+			prioridad = rand()%39 - 19;
+		}
+		//Al salir significa que esa prioridad no existe, asi que se agrega
+		prioridadesNormales[prioridad] = prioridad;
+	} else {
+		//Generar numero random del 0 al 99
+		prioridad = rand()%100;
+		//Comprobar si esta en el array, si esta descartarlo y generar uno nuevo
+		while(prioridadesReales[prioridad]){
+			prioridad = rand()%100;
+		}
+		//Al salir significa que esa prioridad no existe, asi que se agrega
+		prioridadesReales[prioridad] = prioridad;
+	}
     return prioridad;
 }
 

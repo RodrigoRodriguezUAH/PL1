@@ -1,49 +1,51 @@
 #include "Arbol.hpp"
 
 Arbol::Arbol() {
-	raiz=nullptr; 
-	
- }
-
-void Arbol::insertar(Proceso* p) {
-	raiz = insertar(raiz, p); 
+	raiz = nullptr; 
+	numeroNodos = 0;
 }
-pnodoAbb Arbol::insertar(pnodoAbb nodo, Proceso* p)
-{
-    if(!nodo){
+
+//Métodos para insertar
+void Arbol::insertar(Proceso* p) {
+	raiz = insertar(raiz, p); //Lllama al insertar privado
+}
+
+pnodoAbb Arbol::insertar(pnodoAbb nodo, Proceso* p){
+    //Entra en una hoja/nodo vacia
+	if(!nodo){
+		numeroNodos = numeroNodos + 1;
 		return new NodoArbol(p);
-		}
+	}
+	//Si existe un nodo, compara con la prioridad para determinar si va al aubarbol derecho o izquierdo
     if(p->getPrioridad() <= nodo->proceso->getPrioridad()){
 		nodo->izq = insertar(nodo->izq, p);
-		} 
-    else{
+	} else {
 		nodo->der = insertar(nodo->der, p);
-		}
+	}
     return nodo;
 }
-void Arbol::pintar()
-{
-    pintar(raiz);
+
+//Métodos para dibujar el arbol
+void Arbol::pintar(){
+    pintar(raiz); //Llama al metodo privado para pintar
     cout << '\n';
 }
-void Arbol::pintar(pnodoAbb nodo)
-{
-    if(!nodo)
+
+void Arbol::pintar(pnodoAbb nodo){
+    //Si esta vacio el nodo sale
+	if(!nodo)
         return;
+	//Sino recursividad a la izquierda
     pintar(nodo->izq);
+	//Muestra la prioridad del nodo
     cout << nodo->proceso->getPrioridad() << " ";
+	//Y hace recursividad a la derecha
     pintar(nodo->der);
 }
-int Arbol::altura(pnodoAbb nodo)
-{
-    if(!nodo)
-        return 0;
-    return 1 + max(altura(nodo->izq), altura(nodo->der));
-}
 
-void Arbol::dibujarNodo(vector<string>& output, vector<string>& linkAbove, pnodoAbb nodo, int nivel, int p,
-                        char linkChar)
-{
+void Arbol::dibujarNodo(vector<string>& output, vector<string>& linkAbove, 
+						pnodoAbb nodo, int nivel, int p, char linkChar) {
+	//Si esta vacio sale
     if(!nodo)
         return;
 
@@ -89,8 +91,8 @@ void Arbol::dibujarNodo(vector<string>& output, vector<string>& linkAbove, pnodo
     if(nodo->der)
         dibujarNodo(output, linkAbove, nodo->der, nivel + 1, output[nivel].size(), 'R');
 }
-void Arbol::dibujar()
-{
+
+void Arbol::dibujar(){
     int h = altura(raiz);
     vector<string> output(h), linkAbove(h);
     dibujarNodo(output, linkAbove, raiz, 0, 5, ' ');
@@ -125,6 +127,20 @@ void Arbol::dibujar()
         cout << output[i] << '\n';
     }
     cout << '\n' << '\n';
+}
+
+//Metodo que obtiene la altura
+int Arbol::altura(pnodoAbb nodo){
+	//Si esta vacio sale
+    if(!nodo)
+        return 0;
+	//Sino hace llamada recursiva y suma 1
+    return 1 + max(altura(nodo->izq), altura(nodo->der));
+}
+
+//Metodo get
+int Arbol::getNumeroNodos(){
+	return this->numeroNodos;
 }
 
 Arbol::~Arbol() {}

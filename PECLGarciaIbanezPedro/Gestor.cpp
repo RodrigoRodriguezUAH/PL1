@@ -33,6 +33,10 @@ int Gestor::ProcesosEnGPU3(){
     return GPU3.getLongitud();
 }
 
+int Gestor::ProcesosEnArbol(){
+	return ABB.getNumeroNodos();
+}
+
 //Funciones de las opciones del main:
 //Pilas
 void Gestor::genera12Procesos(){
@@ -229,6 +233,21 @@ void Gestor::cambiarPrioridadProcesoPorPID(){
 	}
 }
 
+//Arbol
+void Gestor::crearDibujarABB(){
+	//
+	Proceso* raiz = new Proceso();
+	raiz->setPrioridad(100);
+	ABB.insertar(raiz);
+	//
+	while(pila.getLongitud() != 0){
+		Proceso* proceso = pila.extraer();
+		if(proceso->getTipo()) {proceso->setPrioridad(proceso->getPrioridad()+120);}
+		ABB.insertar(proceso);
+	}
+	ABB.dibujar();
+}
+
 //Reiniciar programa
 void Gestor::reiniciar(){ 
 	//Comprueba si existe algun proceso en alguna de las estructuras y lo vacia despues de resetear los procesos
@@ -264,23 +283,5 @@ void Gestor::reiniciar(){
 	resetear = false; //Una vez reseteado no se puede resetear hasta que se hayan vuelto a generar
 	}
 }
-
-int Gestor::ProcesosEnArbol(){
-	return 0;
-	}
-void Gestor::crearDibujarABB(){
-		Proceso* raiz=new Proceso();
-		raiz->setPrioridad(100);
-		ABB.insertar(raiz);
-		while(pila.getLongitud()!=0){
-			Proceso* proceso=pila.extraer();
-			if(proceso->getTipo()){proceso->setPrioridad(proceso->getPrioridad()+120);}
-			ABB.insertar(proceso);
-			}
-			ABB.dibujar();
-	}
-	
-	
-	
 	
 	

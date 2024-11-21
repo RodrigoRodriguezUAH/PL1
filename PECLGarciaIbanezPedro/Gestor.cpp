@@ -12,6 +12,17 @@ Gestor::Gestor(){
 
 Gestor::~Gestor(){}
 
+//Funciones privadas
+void Gestor::asignarPrioridad(Proceso *p){
+	//Añade el valor de 120 a la priordiad de los procesos normales, que son los unicos que deberian acceder a esta llamada de funcion
+	p->setPrioridad(p->getPrioridad()+120);
+}
+
+void Gestor::activarProceso(Proceso *p){
+	p->setEstado(true);
+}
+
+
 //Funciones de la pantalla de interfaz
 int Gestor::ProcesosEnPila(){
 	return pila.getLongitud();
@@ -67,9 +78,9 @@ void Gestor::encolarProcesos(){
     Proceso* desplazado;
     while(pila.getLongitud() != 0){
         desplazado = pila.extraer();
-		if(desplazado->getTipo()){desplazado->setPrioridad(desplazado->getPrioridad()+120);}
         if (desplazado->getTipo()){ //Proceso de tipo normal porque estos equivalen a true
-            if (GPU0.getLongitud() <= GPU1.getLongitud()){ //Compara longitudes
+			asignarPrioridad(desplazado); //Se aumenta en 120 su prioridad a los procesos nromales
+            if (GPU0.getLongitud() <= GPU1.getLongitud()){ //Compara longitudes de las colas
                 GPU0.encolarOrdenado(desplazado);
             } else {GPU1.encolarOrdenado(desplazado);}
         } else { //Proceso de tipo tiempo real
@@ -113,19 +124,29 @@ int Gestor::ProcesosEnListaTiempoReal(){
 
 
 void Gestor::enlistarProcesos(){
-		while(GPU0.getLongitud()>0){
-			normal.insertarInicio(GPU0.desencolar());
-		}
-		while(GPU1.getLongitud()>0){
-			normal.insertarInicio(GPU1.desencolar());
-		}
-		while(GPU2.getLongitud()>0){
-			Treal.insertarInicio(GPU2.desencolar());
-		}
-		while(GPU3.getLongitud()>0){
-			Treal.insertarInicio(GPU3.desencolar());
-		}
+	//Desencola el proceso, lo activa y lo inserta en las lista que corresponden
+	while(GPU0.getLongitud()>0){
+		Proceso *p = GPU0.desencolar();
+		activarProceso(p);
+		normal.insertarInicio(p);
+	}
+	while(GPU1.getLongitud()>0){
+		Proceso *p = GPU1.desencolar();
+		activarProceso(p);
+		normal.insertarInicio(p);
+	}
+	while(GPU2.getLongitud()>0){
+		Proceso *p = GPU2.desencolar();
+		activarProceso(p);
+		Treal.insertarInicio(p);
+	}
+	while(GPU3.getLongitud()>0){
+		Proceso *p = GPU3.desencolar();
+		activarProceso(p);
+		Treal.insertarInicio(p);
+	}
 }
+
 void Gestor::muestraProcesosNormal(){
 	cout << "Lista de procesos Normales" << endl;
 	normal.mostrar();
@@ -150,7 +171,7 @@ void Gestor::buscarProcesoPorNombreUsuario(){
 	cout << "Introduce el nombre de usuario: ";
 	cin >> nombre;
 	cout << "Procesos en lista normal: " << endl;
-	
+	//Formato de las columnas como se van a mostrar los proceso
 	cout << left << setw(10) << "PID"
          << setw(15) << "Usuario"
          << setw(20) << "Tipo de Proceso"

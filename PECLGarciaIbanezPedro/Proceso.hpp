@@ -22,7 +22,7 @@ class Proceso{
 		int generar_PID();
         bool generar_bool();
         int generar_prioridad(bool tipo);
-		//Metodos que muestran datos
+		//Metodos que muestran datos --> cambiar a mismo nombre pero diferentes requisitos de ejecucion
         void mostrar_proceso();
         void mostrar_proceso_cola();
 		void mostrar_proceso_lista();	

@@ -39,9 +39,13 @@ class Gestor{
 		//Reiniciar
 		void reiniciar();
 		
-    private:
-        Pila pila;
+	private:
+        //Atributos
+		Pila pila;
         Cola GPU0, GPU1, GPU2, GPU3;
         Lista normal, Treal;
 		Arbol ABB;
+		//Métodos privados
+		void asignarPrioridad(Proceso *p);
+		void activarProceso(Proceso *p);
 };

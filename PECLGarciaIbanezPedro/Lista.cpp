@@ -13,7 +13,6 @@ void Lista::insertarInicio(Proceso* p) {
     pnodoLista nuevo = new NodoLista(p);
     nuevo->siguiente = primero;
     primero = nuevo;
-	p->setEstado(true);
 	longitud++;
 }
 

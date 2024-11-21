@@ -277,6 +277,10 @@ void Gestor::mostrarRealesABB(){
 	ABB.mostrarProcesosReales();
 }
 
+void Gestor::mostrarProcesosArbol(){
+	ABB.mostrarProcesosArbol();
+}
+
 //Reiniciar programa
 void Gestor::reiniciar(){ 
 	//Comprueba si existe algun proceso en alguna de las estructuras y lo vacia despues de resetear los procesos

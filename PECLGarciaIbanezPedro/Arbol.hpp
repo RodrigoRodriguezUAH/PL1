@@ -16,7 +16,7 @@ class Arbol{
 		int getNumeroNodos();
 		void mostrarProcesosNormales();
 		void mostrarProcesosReales();
-		
+		void mostrarProcesosArbol();
 
 	private:
 		pnodoAbb raiz;

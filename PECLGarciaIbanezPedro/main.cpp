@@ -118,7 +118,7 @@ int main(int argc, char** argv){
                 gestor.mostrarRealesABB();
                 break;
             case 'T':
-                //...;
+                gestor.mostrarProcesosArbol();
                 break;
             case 'U':
                 //...;

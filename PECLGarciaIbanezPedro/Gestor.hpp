@@ -38,6 +38,7 @@ class Gestor{
 		void crearDibujarABB();
 		void mostrarNormalesABB();
 		void mostrarRealesABB();
+		void mostrarProcesosArbol();
 		//Reiniciar
 		void reiniciar();
 		

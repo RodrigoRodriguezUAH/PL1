@@ -147,6 +147,12 @@ void Arbol::mostrarProcesosReales(){
 	recorrerMostrando(this->raiz->izq);
 }
 
+void Arbol::mostrarProcesosArbol(){
+	//Nota: no mostramos el nodo ficticio
+	recorrerMostrando(this->raiz->izq);
+	recorrerMostrando(this->raiz->der);
+}
+
 void Arbol::recorrerMostrando(pnodoAbb nodo){
 	//Si esta vacio el nodo sale
 	if(!nodo) return;

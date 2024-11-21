@@ -112,10 +112,10 @@ int main(int argc, char** argv){
                 gestor.crearDibujarABB();
                 break;
             case 'Q':
-                //...;
+                gestor.mostrarNormalesABB();
                 break;
             case 'R':
-                //...;
+                gestor.mostrarRealesABB();
                 break;
             case 'T':
                 //...;

@@ -138,6 +138,26 @@ int Arbol::altura(pnodoAbb nodo){
     return 1 + max(altura(nodo->izq), altura(nodo->der));
 }
 
+//Metodos mostrar
+void Arbol::mostrarProcesosNormales(){
+	recorrerMostrando(this->raiz->der);
+}
+
+void Arbol::mostrarProcesosReales(){
+	recorrerMostrando(this->raiz->izq);
+}
+
+void Arbol::recorrerMostrando(pnodoAbb nodo){
+	//Si esta vacio el nodo sale
+	if(!nodo) return;
+	//Sino recursividad a la izquierda
+    recorrerMostrando(nodo->izq);
+	//Muestra el proceso del nodo
+    nodo->proceso->mostrar_proceso_cola();
+	//Y hace recursividad a la derecha
+    recorrerMostrando(nodo->der);
+}
+
 //Metodo get
 int Arbol::getNumeroNodos(){
 	return this->numeroNodos;

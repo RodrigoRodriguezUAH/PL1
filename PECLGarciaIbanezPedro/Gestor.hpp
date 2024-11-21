@@ -36,6 +36,8 @@ class Gestor{
 		void cambiarPrioridadProcesoPorPID();
 		//ABB
 		void crearDibujarABB();
+		void mostrarNormalesABB();
+		void mostrarRealesABB();
 		//Reiniciar
 		void reiniciar();
 		

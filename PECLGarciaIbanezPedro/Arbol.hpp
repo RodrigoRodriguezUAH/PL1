@@ -14,16 +14,19 @@ class Arbol{
 		void pintar();
 		void dibujar();
 		int getNumeroNodos();
+		void mostrarProcesosNormales();
+		void mostrarProcesosReales();
 		
 
 	private:
 		pnodoAbb raiz;
+		int numeroNodos;
 		pnodoAbb insertar(pnodoAbb, Proceso*);
 		void pintar(pnodoAbb);
 		int altura(pnodoAbb);
 		void dibujarNodo(vector<string>& output, vector<string>& linkAbove, 
 						pnodoAbb nodo, int nivel, int minPos, char linkChar);
-		int numeroNodos;
+		void recorrerMostrando(pnodoAbb); //Recorre en inorden
 };
 
 #endif // ARBOL_HPP

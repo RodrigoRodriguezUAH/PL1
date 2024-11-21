@@ -17,6 +17,7 @@ class Arbol{
 		void mostrarProcesosNormales();
 		void mostrarProcesosReales();
 		void mostrarProcesosArbol();
+		void mostrarExtremos(); //Nos da el proceso con menor prioridad de los normales y con mayor prioridad de los reales
 
 	private:
 		pnodoAbb raiz;

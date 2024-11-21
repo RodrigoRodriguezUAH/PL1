@@ -121,7 +121,7 @@ int main(int argc, char** argv){
                 gestor.mostrarProcesosArbol();
                 break;
             case 'U':
-                //...;
+                gestor.mostrarProcesoMinNormalMaxReal();
                 break;
             case 'V':
                 //...;

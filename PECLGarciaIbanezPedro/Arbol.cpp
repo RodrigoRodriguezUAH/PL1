@@ -164,6 +164,23 @@ void Arbol::recorrerMostrando(pnodoAbb nodo){
     recorrerMostrando(nodo->der);
 }
 
+void Arbol::mostrarExtremos(){
+	//Creamos un puntero auxiliar que apunte a la raiz
+	pnodoAbb aux = raiz; 
+	//Mientras exista un nodo derecho seguimos recorriendo el arbol derecho
+	while(aux->der){ aux = aux->der; }
+	//Al salir apuntamos al proceso con menor prioridad de los normales
+	cout << "El proceso con menor prioridad de los normales es:\n";
+	aux->proceso->mostrar_proceso_cola();
+	//Volvemos a la raiz
+	aux = raiz;
+	//Mientras exista un nodo izquierdo seguimos recorriendo el arbol izquierdo
+	while(aux->izq){ aux = aux->izq; }
+	//Al salir apuntamos al proceso con mayor prioridad de los reales
+	cout << "El proceso con mayor prioridad de los de tiempo real es:\n";
+	aux->proceso->mostrar_proceso_cola();
+}
+
 //Metodo get
 int Arbol::getNumeroNodos(){
 	return this->numeroNodos;

@@ -181,9 +181,38 @@ void Arbol::mostrarExtremos(){
 	aux->proceso->mostrar_proceso_cola();
 }
 
-//Metodo get
+void Arbol::mostrarHojas(){
+	cout << "Procesos almacenados en nodos hojas:\n";
+	buscarMostrandoHojas(this->raiz);
+}
+
+void Arbol::buscarMostrandoHojas(pnodoAbb nodo){
+	//Si es un nodo hoja mostrarlo
+	if(nodo->izq == nullptr && nodo->der == nullptr){
+		nodo->proceso->mostrar_proceso_cola();
+		return; //Salir de la funcion
+	}
+	//Sino, si una rama esta vacia buscar en la otra
+	if(nodo->der == nullptr){ //Si solo hay rama izquierda
+		//Busca en ella
+		buscarMostrandoHojas(nodo->izq);
+	} else { //Existe la rama der
+		if(nodo->izq != nullptr){ //Si las dos ramas existen buscar en las 2
+			//Busca en la izq
+			buscarMostrandoHojas(nodo->izq);
+		}
+		//Busca en la der
+		buscarMostrandoHojas(nodo->der);
+	}
+}
+
+//Metodos get
 int Arbol::getNumeroNodos(){
 	return this->numeroNodos;
+}
+
+pnodoAbb Arbol::getRaiz(){
+	return this->raiz;
 }
 
 Arbol::~Arbol() {}

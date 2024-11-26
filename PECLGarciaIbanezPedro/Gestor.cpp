@@ -256,16 +256,19 @@ void Gestor::cambiarPrioridadProcesoPorPID(){
 
 //Arbol
 void Gestor::crearDibujarABB(){
-	//
-	Proceso* raiz = new Proceso();
-	raiz->setPrioridad(100);
-	ABB.insertar(raiz);
-	//
+	//Si la raiz no se ha creado generarla
+	if(ABB.getRaiz() == nullptr){
+		Proceso* raiz = new Proceso();
+		raiz->setPrioridad(100);
+		ABB.insertar(raiz);
+	}
+	//Desapila e insertar al arbol
 	while(pila.getLongitud() != 0){
 		Proceso* proceso = pila.extraer();
 		if(proceso->getTipo()) {proceso->setPrioridad(proceso->getPrioridad()+120);}
 		ABB.insertar(proceso);
 	}
+	//Muestra el arbol por pantalla
 	ABB.dibujar();
 }
 
@@ -285,20 +288,25 @@ void Gestor::mostrarProcesoMinNormalMaxReal(){
 	ABB.mostrarExtremos();
 }
 
+void Gestor::mostrarProcesosHoja(){
+	ABB.mostrarHojas();
+}
+
 //Reiniciar programa
 void Gestor::reiniciar(){ 
 	//Comprueba si existe algun proceso en alguna de las estructuras y lo vacia despues de resetear los procesos
-	if(resetear){ //El resetear se activa cuando se generan procesos
+	if(resetear){ //El resetear se activa cuando se han generado procesos
+		//Si hay algun proceso en la pila se resetea
 		if(pila.getLongitud() > 0){
 			pila.cima()->resetProcesos();
 			pila.vaciar();
 		}
+		//Se revisa si hay algun proceso en las colas
 		if(!GPU0.esVacia()){
 			GPU0.desencolar()->resetProcesos();
 			GPU0.vaciar();
 		}
-		if(!GPU1.esVacia()){
-			GPU1.desencolar()->resetProcesos();
+		if(!GPU1.esVacia()){ //No hace falta llamar a reset procesos 2 veces
 			GPU1.vaciar();
 		}
 		if(!GPU2.esVacia()){
@@ -306,9 +314,9 @@ void Gestor::reiniciar(){
 			GPU2.vaciar();
 		}
 		if(!GPU3.esVacia()){
-			GPU3.desencolar()->resetProcesos();
 			GPU3.vaciar();
 		}
+		//Se revisa si las Listas estan vacias
 		if(Treal.getLongitud() > 0){
 			Treal.getPrimero()->resetProcesos();
 			Treal.vaciar();
@@ -316,6 +324,10 @@ void Gestor::reiniciar(){
 		if(normal.getLongitud() > 0){
 			normal.getPrimero()->resetProcesos();
 			normal.vaciar();
+		}
+		//Se revisa si hay nodos en alguno de los subarboles de la raiz ya que el raiz es uno inventado
+		if(ABB.getNumeroNodos() > 0){
+			//Pendiente de vaciar
 		}
 	resetear = false; //Una vez reseteado no se puede resetear hasta que se hayan vuelto a generar
 	}

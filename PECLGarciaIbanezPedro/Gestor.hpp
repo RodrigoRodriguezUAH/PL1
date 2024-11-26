@@ -40,6 +40,7 @@ class Gestor{
 		void mostrarRealesABB();
 		void mostrarProcesosArbol();
 		void mostrarProcesoMinNormalMaxReal();
+		void mostrarProcesosHoja();
 		//Reiniciar
 		void reiniciar();
 		

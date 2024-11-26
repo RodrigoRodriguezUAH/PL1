@@ -14,10 +14,12 @@ class Arbol{
 		void pintar();
 		void dibujar();
 		int getNumeroNodos();
+		pnodoAbb getRaiz();
 		void mostrarProcesosNormales();
 		void mostrarProcesosReales();
 		void mostrarProcesosArbol();
 		void mostrarExtremos(); //Nos da el proceso con menor prioridad de los normales y con mayor prioridad de los reales
+		void mostrarHojas();
 
 	private:
 		pnodoAbb raiz;
@@ -27,7 +29,8 @@ class Arbol{
 		int altura(pnodoAbb);
 		void dibujarNodo(vector<string>& output, vector<string>& linkAbove, 
 						pnodoAbb nodo, int nivel, int minPos, char linkChar);
-		void recorrerMostrando(pnodoAbb); //Recorre en inorden
+		void recorrerMostrando(pnodoAbb nodo); //Recorre en inorden
+		void buscarMostrandoHojas(pnodoAbb nodo);
 };
 
 #endif // ARBOL_HPP

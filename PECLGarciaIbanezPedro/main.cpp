@@ -124,7 +124,7 @@ int main(int argc, char** argv){
                 gestor.mostrarProcesoMinNormalMaxReal();
                 break;
             case 'V':
-                //...;
+                gestor.mostrarProcesosHoja();
                 break;
             case 'W':
                 //...;

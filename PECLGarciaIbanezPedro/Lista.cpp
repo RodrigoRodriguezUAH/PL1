@@ -18,16 +18,18 @@ void Lista::insertarInicio(Proceso* p) {
 
 //Metodo para mostrar contenido de una lista
 void Lista::mostrar(){
-	pnodoLista aux = primero;
+	//Columnas para los datos
 	cout << left << setw(10) << "PID"
          << setw(15) << "Usuario"
          << setw(20) << "Tipo de Proceso"
          << setw(20) << "Estado"
          << setw(10) << "Prioridad"
          << endl;
-	
+	//Auxiliar que recorre la lista
+	pnodoLista aux = primero;
+	//Bucle que recorre la lista
 	while(aux){
-		aux->proceso->mostrar_proceso_lista();
+		aux->proceso->mostrar_proceso(true);
 		aux = aux->siguiente;
     }
 }
@@ -36,14 +38,14 @@ void Lista::mostrar(){
 Proceso* Lista::cambiarPrioridad(int PDI, int prioridad){
 		pnodoLista aux = primero;
 		if(primero->proceso->getPID() == PDI){
-			primero->proceso->mostrar_proceso_lista();
+			primero->proceso->mostrar_proceso(true);
 			primero->proceso->setPrioridad(prioridad);
 			return primero->proceso;
 		}
 		
 		while(aux){
 			if(aux->proceso->getPID() == PDI){
-				aux->proceso->mostrar_proceso_lista();
+				aux->proceso->mostrar_proceso(true);
 				aux->proceso->setPrioridad(prioridad);
 				return aux->proceso;
 			}
@@ -100,7 +102,7 @@ void Lista::MenorPrioridad(){
 		}
 		aux = aux->siguiente;
 	}
-	temp->proceso->mostrar_proceso_cola();
+	temp->proceso->mostrar_proceso(true);
 }
 
 void Lista::MayorPrioridad(){
@@ -114,14 +116,14 @@ void Lista::MayorPrioridad(){
 		}
 		aux = aux->siguiente;
 	}
-	temp->proceso->mostrar_proceso_cola();
+	temp->proceso->mostrar_proceso(true);
 }
 
 //Metodo para buscar en funcion de los nombres de usuario
 void Lista::busquedaNombres(string nombre){
 	pnodoLista aux = primero;
 	while(aux){
-		if(aux->proceso->getNombre() == nombre){aux->proceso->mostrar_proceso_lista();}
+		if(aux->proceso->getNombre() == nombre){aux->proceso->mostrar_proceso(true);}
 		aux = aux->siguiente;
 	}
 }

@@ -67,42 +67,40 @@ int Proceso::generar_prioridad(bool tipo){
 
 
 //Metodos que muestran datos
+//En la pila
 void Proceso::mostrar_proceso(){
+	//Poner el nombre del tipo segun su booleano
     string tipoString;
     if (tipo == true) {tipoString = "normal";} 
 	else {tipoString = "en tiempo real";}
-	
+	//Mostrar datos
     cout << "El proceso cuyo PID es " << PID << " es de tipo " << tipoString << endl;
 }
-
-void Proceso::mostrar_proceso_cola(){
-    string tipoString;
-    if(tipo == true){ tipoString = "normal";}
-    else {tipoString = "en tiempo real";}
-    
-    string estadoString;
-    if(estado == true){ estadoString = "ejecucion";}
-    else {estadoString = "parado";}
-    
-    cout << "El proceso cuyo PID es: " << PID << " es de tipo " << tipoString << ", su estado es " 
-		<< estadoString << " y su prioridad es: " << prioridad << endl;
-}
-
-void Proceso::mostrar_proceso_lista(){
+//En las demas estructuras
+void Proceso::mostrar_proceso(bool estado){
+	//Igualamos el estado que entre con el estado del proceso
+	estado = this->estado;
+    //Poner el nombre del tipo segun su booleano
 	string tipoString;
-	if(tipo == true){ tipoString = "Normal";}
-    else {tipoString = "TiempoReal";}
-	
-	string estadoString;
-	if(estado == true){ estadoString = "En Ejecucion";}
-    else {estadoString = "Parado";}
-	
-	cout << left << setw(10) << PID
-         << setw(15) << nombre
-         << setw(20) << tipoString
-         << setw(20) << estadoString
-         << setw(10) << prioridad
-         << endl;
+    if (tipo == true) {tipoString = "normal";}
+    else {tipoString = "en tiempo real";}
+    //Asignar segun el estado (Esto diferenciara si estan en la cola/arbol o en la lista)
+    string estadoString;
+    if(estado == true){ //Para Lista
+		estadoString = "ejecucion";
+		//Mostrar datos
+		cout << left << setw(10) << PID
+			 << setw(15) << nombre
+			 << setw(20) << tipoString
+			 << setw(20) << estadoString
+			 << setw(10) << prioridad
+			 << endl;
+	} else { //Para cola o arbol
+		estadoString = "parado";
+		//Mostrar datos
+		cout << "El proceso cuyo PID es: " << PID << " es de tipo " << tipoString << ", su estado es " 
+			<< estadoString << " y su prioridad es: " << prioridad << endl;
+	}
 }
 
 //Gets y sets
@@ -118,6 +116,9 @@ int Proceso::getPrioridad(){
 
 bool Proceso::getTipo(){
 	return tipo;
+}
+bool Proceso::getEstado(){
+	return estado;
 }
 void Proceso::setEstado(bool estado){
 	this->estado = estado;

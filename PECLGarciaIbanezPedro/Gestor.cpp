@@ -202,7 +202,7 @@ void Gestor::eliminarProcesoPorPID(){
 				 << setw(20) << "Estado"
 				 << setw(10) << "Prioridad"
 				 << endl;
-			eliminado->mostrar_proceso_lista();
+			eliminado->mostrar_proceso(true);
 		} else { //Si no esta en la normal, revisa la de Tiempo Real
 			Proceso* eliminado = Treal.eliminar(PID);
 			eliminado->setEstado(false);
@@ -213,7 +213,7 @@ void Gestor::eliminarProcesoPorPID(){
 				 << setw(20) << "Estado"
 				 << setw(10) << "Prioridad"
 				 << endl;
-			 eliminado->mostrar_proceso_lista();
+			 eliminado->mostrar_proceso(true);
 		}
 	} catch (const out_of_range& e) { //Error por PID erroneo
 		cout << e.what() << endl;
@@ -237,7 +237,7 @@ void Gestor::cambiarPrioridadProcesoPorPID(){
 				  << setw(20) << "Estado"
 				  << setw(10) << "Prioridad"
 				  << endl;
-			 cambiar->mostrar_proceso_lista();
+			 cambiar->mostrar_proceso(true);
 		} else { //Si no esta en la normal mira en la de Treal
 			Proceso* cambiar = Treal.cambiarPrioridad(PID,prioridad);
 			cout << left << setw(10) << "PID"
@@ -246,7 +246,7 @@ void Gestor::cambiarPrioridadProcesoPorPID(){
 				 << setw(20) << "Estado"
 				 << setw(10) << "Prioridad"
 				 << endl;
-			 cambiar->mostrar_proceso_lista();
+			 cambiar->mostrar_proceso(true);
 		}
 		 
 	} catch (const out_of_range& e) { //Error si el PID no existe en ninguna de las listas

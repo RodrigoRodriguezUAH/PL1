@@ -22,17 +22,17 @@ class Proceso{
 		int generar_PID();
         bool generar_bool();
         int generar_prioridad(bool tipo);
-		//Metodos que muestran datos --> cambiar a mismo nombre pero diferentes requisitos de ejecucion
+		//Metodos que muestran datos
         void mostrar_proceso();
-        void mostrar_proceso_cola();
-		void mostrar_proceso_lista();	
+        void mostrar_proceso(bool estado);	
 		//Metodos get y set
-        void setPrioridad(int prioridad);
-        int getPrioridad();
-		bool getTipo();
-		void setEstado(bool estado);
 		int getPID();
+        int getPrioridad();
+		bool getEstado();
+		bool getTipo();
 		string getNombre();
+		void setPrioridad(int prioridad);
+		void setEstado(bool estado);
 		//Funcion Reset
 		void resetProcesos();
 };

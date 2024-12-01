@@ -159,7 +159,7 @@ void Arbol::recorrerMostrando(pnodoAbb nodo){
 	//Sino recursividad a la izquierda
     recorrerMostrando(nodo->izq);
 	//Muestra el proceso del nodo
-    nodo->proceso->mostrar_proceso(false);
+    nodo->proceso->mostrar_proceso();
 	//Y hace recursividad a la derecha
     recorrerMostrando(nodo->der);
 }
@@ -171,14 +171,14 @@ void Arbol::mostrarExtremos(){
 	while(aux->der){ aux = aux->der; }
 	//Al salir apuntamos al proceso con menor prioridad de los normales
 	cout << "- El proceso con menor prioridad de los normales es:\n\t";
-	aux->proceso->mostrar_proceso(false);
+	aux->proceso->mostrar_proceso();
 	//Volvemos a la raiz
 	aux = raiz;
 	//Mientras exista un nodo izquierdo seguimos recorriendo el arbol izquierdo
 	while(aux->izq){ aux = aux->izq; }
 	//Al salir apuntamos al proceso con mayor prioridad de los reales
 	cout << "- El proceso con mayor prioridad de los de tiempo real es:\n\t";
-	aux->proceso->mostrar_proceso(false);
+	aux->proceso->mostrar_proceso();
 }
 
 void Arbol::mostrarHojas(){
@@ -189,7 +189,7 @@ void Arbol::mostrarHojas(){
 void Arbol::buscarMostrandoHojas(pnodoAbb nodo){
 	//Si es un nodo hoja mostrarlo
 	if(nodo->izq == nullptr && nodo->der == nullptr){
-		nodo->proceso->mostrar_proceso(false);
+		nodo->proceso->mostrar_proceso();
 		return; //Salir de la funcion
 	}
 	//Sino, si una rama esta vacia buscar en la otra

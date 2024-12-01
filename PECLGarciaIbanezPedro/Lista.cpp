@@ -29,7 +29,7 @@ void Lista::mostrar(){
 	pnodoLista aux = primero;
 	//Bucle que recorre la lista
 	while(aux){
-		aux->proceso->mostrar_proceso(true);
+		aux->proceso->mostrar_proceso();
 		aux = aux->siguiente;
     }
 }
@@ -38,14 +38,14 @@ void Lista::mostrar(){
 Proceso* Lista::cambiarPrioridad(int PDI, int prioridad){
 		pnodoLista aux = primero;
 		if(primero->proceso->getPID() == PDI){
-			primero->proceso->mostrar_proceso(true);
+			primero->proceso->mostrar_proceso();
 			primero->proceso->setPrioridad(prioridad);
 			return primero->proceso;
 		}
 		
 		while(aux){
 			if(aux->proceso->getPID() == PDI){
-				aux->proceso->mostrar_proceso(true);
+				aux->proceso->mostrar_proceso();
 				aux->proceso->setPrioridad(prioridad);
 				return aux->proceso;
 			}
@@ -102,7 +102,7 @@ void Lista::MenorPrioridad(){
 		}
 		aux = aux->siguiente;
 	}
-	temp->proceso->mostrar_proceso(true);
+	temp->proceso->mostrar_proceso();
 }
 
 void Lista::MayorPrioridad(){
@@ -116,14 +116,14 @@ void Lista::MayorPrioridad(){
 		}
 		aux = aux->siguiente;
 	}
-	temp->proceso->mostrar_proceso(true);
+	temp->proceso->mostrar_proceso();
 }
 
 //Metodo para buscar en funcion de los nombres de usuario
 void Lista::busquedaNombres(string nombre){
 	pnodoLista aux = primero;
 	while(aux){
-		if(aux->proceso->getNombre() == nombre){aux->proceso->mostrar_proceso(true);}
+		if(aux->proceso->getNombre() == nombre){aux->proceso->mostrar_proceso();}
 		aux = aux->siguiente;
 	}
 }

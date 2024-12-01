@@ -1,27 +1,74 @@
 #include "Gestor.hpp"
-
+#include <algorithm> //Para usar random_shuffle
 //Variable que indica si se puede resetear
-bool resetear = false; 
+bool resetear = false;
+//Lista de PIDs
+int PIDs[] = {300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 
+			  316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331,
+              332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348};
+int contador; //Variable que contabiliza el nº de PIDs creados
+//Arrays de prioridades y sus contadores
+int prioridadesNormales[40]; //Contiene las prioridades de procesos normales
+int prioridadesReales[100]; //Contienen las prioridades de procesos en tiempo real
+int contadorNormal; //Indica cuantos procesos normales existen
+int contadorReal; //Indica cuantos procesos de tiempo real existen
 
 Gestor::Gestor(){
 	Pila pila;
     Cola GPU0, GPU1, GPU2, GPU3;
     Lista normal, Treal;
 	Arbol ABB;
+	//Generamos los elementos de los arrays de prioridades
+	llenar_listas_prioridades();
+	//Iniciamos los contadores a 0
+	contador = 0;
+	contadorNormal = 0;
+	contadorReal = 0; 
 }
 
 Gestor::~Gestor(){}
 
 //Funciones privadas
+void Gestor::asignarPID(Proceso *p){
+	//Si el contador no ha llegado al limite
+	if(contador < 49){
+		p->setPID(PIDs[contador]); //Asigna el PID
+		contador++; //Aumenta el contador de PIDs
+	} else throw out_of_range("Limite de procesos alcanzado, resetea el programa para poder generar mas.");
+}
+
 void Gestor::asignarPrioridad(Proceso *p){
-	//Añade el valor de 120 a la priordiad de los procesos normales, que son los unicos que deberian acceder a esta llamada de funcion
-	p->setPrioridad(p->getPrioridad()+120);
+	bool tipo = p->getTipo();
+	if(tipo){ //Proceso Normal
+		p->setPrioridad(prioridadesNormales[contadorNormal]); //Asigna la prioridad de la posicion del contador
+		contadorNormal++; //Aumenta el contador
+		//Si la prioridad del proceso normal aun no se ha aumentado, aumentarla
+		if (p->getPrioridad() < 20){
+			p->setPrioridad(p->getPrioridad() + 120);
+		}
+	} else { //Proceso en tiempo real
+		p->setPrioridad(prioridadesReales[contadorReal]); //Asigna la prioridad de la posicion del contador
+		contadorReal++; //Aumenta el contador
+	}
 }
 
 void Gestor::activarProceso(Proceso *p){
 	p->setEstado(true);
 }
 
+//Funcion de datos de control
+//Método constructor de las listas de prioridades
+void Gestor::llenar_listas_prioridades(){
+	//Generar los numeros del -19 al 19
+	for(int i = 0; i <= 39; i++){prioridadesNormales[i] = i - 19;}
+	//Desordenar el array
+	random_shuffle(prioridadesNormales, prioridadesNormales + 39);
+
+	//Generar numero random del 0 al 99
+	for(int i = 0; i <= 99; i++){prioridadesReales[i] = i;}
+	//Desordenar el array
+	random_shuffle(prioridadesReales, prioridadesReales + 39);
+}
 
 //Funciones de la pantalla de interfaz
 int Gestor::ProcesosEnPila(){
@@ -54,9 +101,10 @@ void Gestor::genera12Procesos(){
 	try{
 		if(!resetear){resetear = true;} //Se permite resetear porque existen procesos
 		if(pila.getLongitud() < 48){
-			for (int i = 0; i < 12; i++){
-				Proceso* p = new Proceso();
-				pila.insertar(p);
+			for (int i = 0; i < 12; i++){ //Repetimos el bucle 12 veces
+				Proceso* p = new Proceso(); //Creamos el proceso
+				asignarPID(p); //Le asignamos el PID
+				pila.insertar(p); //Lo introducioms en la pila
 			}
 		}
 	} catch(const out_of_range& e) {
@@ -75,15 +123,16 @@ void Gestor::borraProcesosPila(){
 
 //Colas
 void Gestor::encolarProcesos(){
-    Proceso* desplazado;
-    while(pila.getLongitud() != 0){
-        desplazado = pila.extraer();
-        if (desplazado->getTipo()){ //Proceso de tipo normal porque estos equivalen a true
-			asignarPrioridad(desplazado); //Se aumenta en 120 su prioridad a los procesos nromales
-            if (GPU0.getLongitud() <= GPU1.getLongitud()){ //Compara longitudes de las colas
+    Proceso* desplazado; //Puntero que apuntara a los procesos a entre estructuras
+    while(pila.getLongitud() != 0){ //Mientras la pila no este vacia
+        desplazado = pila.extraer(); //Apuntamos al proceso que sacamos de la pila
+		asignarPrioridad(desplazado); //Le asignamos una prioridad
+        if (desplazado->getTipo()){ //Si el proceso es de tipo normal
+			//Compara longitudes de las colas e introduce el proceso en la que corresponde
+            if (GPU0.getLongitud() <= GPU1.getLongitud()){ 
                 GPU0.encolarOrdenado(desplazado);
             } else {GPU1.encolarOrdenado(desplazado);}
-        } else { //Proceso de tipo tiempo real
+        } else { //Igual en los procesos de tipo tiempo real
             if (GPU2.getLongitud() <= GPU3.getLongitud()){
                 GPU2.encolarOrdenado(desplazado);
             } else {GPU3.encolarOrdenado(desplazado);}
@@ -202,7 +251,7 @@ void Gestor::eliminarProcesoPorPID(){
 				 << setw(20) << "Estado"
 				 << setw(10) << "Prioridad"
 				 << endl;
-			eliminado->mostrar_proceso(true);
+			eliminado->mostrar_proceso();
 		} else { //Si no esta en la normal, revisa la de Tiempo Real
 			Proceso* eliminado = Treal.eliminar(PID);
 			eliminado->setEstado(false);
@@ -213,7 +262,7 @@ void Gestor::eliminarProcesoPorPID(){
 				 << setw(20) << "Estado"
 				 << setw(10) << "Prioridad"
 				 << endl;
-			 eliminado->mostrar_proceso(true);
+			 eliminado->mostrar_proceso();
 		}
 	} catch (const out_of_range& e) { //Error por PID erroneo
 		cout << e.what() << endl;
@@ -231,13 +280,13 @@ void Gestor::cambiarPrioridadProcesoPorPID(){
 	try{ //Comprobar si el PID es valido
 		if(normal.contiene(PID)){ //Mira en la lista normal
 			Proceso* cambiar = normal.cambiarPrioridad(PID,prioridad);
-			 cout << left << setw(10) << "PID"
+			cout << left << setw(10) << "PID"
 				  << setw(15) << "Usuario"
 				  << setw(20) << "Tipo de Proceso"
 				  << setw(20) << "Estado"
 				  << setw(10) << "Prioridad"
 				  << endl;
-			 cambiar->mostrar_proceso(true);
+			cambiar->mostrar_proceso();
 		} else { //Si no esta en la normal mira en la de Treal
 			Proceso* cambiar = Treal.cambiarPrioridad(PID,prioridad);
 			cout << left << setw(10) << "PID"
@@ -246,7 +295,7 @@ void Gestor::cambiarPrioridadProcesoPorPID(){
 				 << setw(20) << "Estado"
 				 << setw(10) << "Prioridad"
 				 << endl;
-			 cambiar->mostrar_proceso(true);
+			cambiar->mostrar_proceso();
 		}
 		 
 	} catch (const out_of_range& e) { //Error si el PID no existe en ninguna de las listas
@@ -263,10 +312,10 @@ void Gestor::crearDibujarABB(){
 		ABB.insertar(raiz);
 	}
 	//Desapila e insertar al arbol
-	while(pila.getLongitud() != 0){
-		Proceso* proceso = pila.extraer();
-		if(proceso->getTipo()) {proceso->setPrioridad(proceso->getPrioridad()+120);}
-		ABB.insertar(proceso);
+	while(pila.getLongitud() != 0){ //Bucle mientras la pila no este vacia
+		Proceso* proceso = pila.extraer(); //Creamos un puntero que apunte al proceso desapilado
+		asignarPrioridad(proceso); //Le asignamos una prioridad
+		ABB.insertar(proceso); //Lo introducimos en el arbol
 	}
 	//Muestra el arbol por pantalla
 	ABB.dibujar();
@@ -296,40 +345,28 @@ void Gestor::mostrarProcesosHoja(){
 void Gestor::reiniciar(){ 
 	//Comprueba si existe algun proceso en alguna de las estructuras y lo vacia despues de resetear los procesos
 	if(resetear){ //El resetear se activa cuando se han generado procesos
+		//Vaciado de las estructuras
 		//Si hay algun proceso en la pila se resetea
-		if(pila.getLongitud() > 0){
-			pila.cima()->resetProcesos();
-			pila.vaciar();
-		}
+		if(pila.getLongitud() > 0){pila.vaciar();}
 		//Se revisa si hay algun proceso en las colas
-		if(!GPU0.esVacia()){
-			GPU0.desencolar()->resetProcesos();
-			GPU0.vaciar();
-		}
-		if(!GPU1.esVacia()){ //No hace falta llamar a reset procesos 2 veces
-			GPU1.vaciar();
-		}
-		if(!GPU2.esVacia()){
-			GPU2.desencolar()->resetProcesos();
-			GPU2.vaciar();
-		}
-		if(!GPU3.esVacia()){
-			GPU3.vaciar();
-		}
+		if(!GPU0.esVacia()){GPU0.vaciar();}
+		if(!GPU1.esVacia()){GPU1.vaciar();}
+		if(!GPU2.esVacia()){GPU2.vaciar();}
+		if(!GPU3.esVacia()){GPU3.vaciar();}
 		//Se revisa si las Listas estan vacias
-		if(Treal.getLongitud() > 0){
-			Treal.getPrimero()->resetProcesos();
-			Treal.vaciar();
-		}
-		if(normal.getLongitud() > 0){
-			normal.getPrimero()->resetProcesos();
-			normal.vaciar();
-		}
+		if(Treal.getLongitud() > 0){Treal.vaciar();}
+		if(normal.getLongitud() > 0){normal.vaciar();}
 		//Se revisa si hay nodos en alguno de los subarboles de la raiz ya que el raiz es uno inventado
 		if(ABB.getNumeroNodos() > 0){
 			//Pendiente de vaciar
 		}
-	resetear = false; //Una vez reseteado no se puede resetear hasta que se hayan vuelto a generar
+		
+		//Contadores reiniciados
+		contador = 0;
+		contadorNormal = 0;
+		contadorReal = 0;
+		//Una vez reseteado no se puede resetear hasta que se hayan vuelto a generar
+		resetear = false;
 	}
 }
 	

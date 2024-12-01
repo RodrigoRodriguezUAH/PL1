@@ -51,6 +51,8 @@ class Gestor{
         Lista normal, Treal;
 		Arbol ABB;
 		//Métodos privados
-		void asignarPrioridad(Proceso *p);
-		void activarProceso(Proceso *p);
+		void llenar_listas_prioridades(); //Genera los rangos de prioridades de los procesos
+		void asignarPID(Proceso *p); //Asigna los PIDs a los procesos
+		void asignarPrioridad(Proceso *p); //Asigna la prioridad al proceso
+		void activarProceso(Proceso *p); //Activa el estado del proceso
 };

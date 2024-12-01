@@ -49,7 +49,7 @@ Proceso* Cola::verPrimero(){
 void Cola::mostrar(){
 	pnodoCola aux = primero;
 	while(aux){
-		aux->proceso->mostrar_proceso(false);
+		aux->proceso->mostrar_proceso();
 		aux = aux->siguiente;
     }
 }

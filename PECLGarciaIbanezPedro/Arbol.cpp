@@ -206,6 +206,57 @@ void Arbol::buscarMostrandoHojas(pnodoAbb nodo){
 	}
 }
 
+// Función para encontrar el valor máximo en un árbol binario
+Proceso* Arbol::maximo(pnodoAbb abb) {
+    while (abb->der != nullptr) {
+        abb = abb->der;
+    }
+    return abb->proceso;
+}
+//Declaración adelantada para evitar errores
+//pnodoAbb Arbol::borrarElemento(Proceso* proceso, pnodoAbb abb);
+
+// Función para borrar un nodo del árbol
+pnodoAbb Arbol::borrarNodo(pnodoAbb abb) {
+    pnodoAbb nuevo;
+    if (abb->izq == nullptr && abb->der == nullptr) {
+        delete abb;
+        return nullptr;
+    } 
+	else if (abb->izq == nullptr) {
+        nuevo = abb->der;
+        delete abb;
+        return nuevo;
+    } 
+	else if (abb->der == nullptr) {
+        nuevo = abb->izq;
+        delete abb;
+        return nuevo;
+    } 
+	else {
+        abb->proceso = maximo(abb->izq);
+        abb->izq = borrarElemento(abb->proceso, abb->izq);
+        return abb;
+    }
+}
+// Función para borrar un elemento del árbol
+pnodoAbb Arbol::borrarElemento(Proceso* proceso, pnodoAbb abb) {
+    int p=proceso->getPrioridad();
+	if (abb == nullptr) {
+        return nullptr;
+    } 
+	else if (p < abb->proceso->getPrioridad()) {
+        abb->izq = borrarElemento(proceso, abb->izq);
+    } 
+	else if (p > abb->proceso->getPrioridad()) {
+        abb->der = borrarElemento(proceso, abb->der);
+    } 
+	else {
+        abb = borrarNodo(abb);
+    }
+    return abb;
+}
+
 //Metodos get
 int Arbol::getNumeroNodos(){
 	return this->numeroNodos;
@@ -214,6 +265,29 @@ int Arbol::getNumeroNodos(){
 pnodoAbb Arbol::getRaiz(){
 	return this->raiz;
 }
+
+
+Proceso* Arbol::buscarPorPrioridad(int prioridad,pnodoAbb nodo){
+		
+	//Si esta vacio el nodo sale
+	if(!nodo) return 0;
+	if (nodo->proceso->getPrioridad()==prioridad){
+		return nodo->proceso;
+		}
+	else if(nodo->proceso->getPrioridad()>prioridad){
+	//Sino recursividad a la izquierda
+    return buscarPorPrioridad(prioridad,nodo->izq);
+		}
+	else if(nodo->proceso->getPrioridad()<prioridad){
+	//Y hace recursividad a la derecha
+	return buscarPorPrioridad(prioridad,nodo->der);
+		}
+}
+
+
+
+
+
 
 Arbol::~Arbol() {}
 

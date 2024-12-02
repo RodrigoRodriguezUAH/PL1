@@ -340,7 +340,18 @@ void Gestor::mostrarProcesoMinNormalMaxReal(){
 void Gestor::mostrarProcesosHoja(){
 	ABB.mostrarHojas();
 }
-
+void Gestor::eliminarPorPrioridad(){
+		int Prioridad;
+		cout<<"Indica la prioridad del proceso a eliminar: ";
+		cin>>Prioridad;
+		cout<<"Arbol antes de eliminar-> "<<endl;
+		ABB.dibujar();
+		Proceso* eliminar = ABB.buscarPorPrioridad(Prioridad,ABB.getRaiz());
+		eliminar->mostrar_proceso();
+		ABB.borrarElemento( eliminar,ABB.getRaiz());
+		cout<<"Arbol tras eliminar-> "<<endl;
+		ABB.dibujar();
+}
 //Reiniciar programa
 void Gestor::reiniciar(){ 
 	//Comprueba si existe algun proceso en alguna de las estructuras y lo vacia despues de resetear los procesos

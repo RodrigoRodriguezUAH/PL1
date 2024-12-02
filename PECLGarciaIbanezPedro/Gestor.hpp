@@ -41,6 +41,7 @@ class Gestor{
 		void mostrarProcesosArbol();
 		void mostrarProcesoMinNormalMaxReal();
 		void mostrarProcesosHoja();
+		void eliminarPorPrioridad();
 		//Reiniciar
 		void reiniciar();
 		

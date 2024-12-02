@@ -127,7 +127,7 @@ int main(int argc, char** argv){
                 gestor.mostrarProcesosHoja();
                 break;
             case 'W':
-                //...;
+                gestor.eliminarPorPrioridad();
                 break;
             case 'S':
                 cout << "Saliendo del programa...\n";

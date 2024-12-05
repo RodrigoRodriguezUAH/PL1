@@ -347,10 +347,15 @@ void Gestor::eliminarPorPrioridad(){
 		cout<<"Arbol antes de eliminar-> "<<endl;
 		ABB.dibujar();
 		Proceso* eliminar = ABB.buscarPorPrioridad(Prioridad,ABB.getRaiz());
+		if (ABB.esta(ABB.getRaiz(),Prioridad)){
 		eliminar->mostrar_proceso();
 		ABB.borrarElemento( eliminar,ABB.getRaiz());
 		cout<<"Arbol tras eliminar-> "<<endl;
 		ABB.dibujar();
+		}
+		else{
+			cout<<"El elemento no se encuentra en el arbol";
+			}
 }
 //Reiniciar programa
 void Gestor::reiniciar(){ 

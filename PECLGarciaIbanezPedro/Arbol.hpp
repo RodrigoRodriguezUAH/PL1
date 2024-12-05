@@ -20,6 +20,7 @@ class Arbol{
 		void mostrarProcesosArbol();
 		void mostrarExtremos(); //Nos da el proceso con menor prioridad de los normales y con mayor prioridad de los reales
 		void mostrarHojas();
+		bool esta(pnodoAbb nodo,int prioridad);
 		pnodoAbb borrarNodo(pnodoAbb abb);
 		pnodoAbb borrarElemento(Proceso* proceso,pnodoAbb abb);
 		Proceso* maximo(pnodoAbb abb);

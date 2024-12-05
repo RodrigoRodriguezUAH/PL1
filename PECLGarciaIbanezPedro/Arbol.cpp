@@ -128,7 +128,24 @@ void Arbol::dibujar(){
     }
     cout << '\n' << '\n';
 }
-
+bool Arbol::esta(pnodoAbb nodo, int prioridad){
+		//Si el árbol esta vacío o alcanza una hoja el elemento no esta
+		
+		//Si esta vacio el nodo sale
+	if(!nodo) return false;
+	if (nodo->proceso->getPrioridad()==prioridad){
+		return true;
+		}
+	else if(nodo->proceso->getPrioridad()>prioridad){
+	//Sino recursividad a la izquierda
+    return buscarPorPrioridad(prioridad,nodo->izq);
+		}
+	else if(nodo->proceso->getPrioridad()<prioridad){
+	//Y hace recursividad a la derecha
+	return buscarPorPrioridad(prioridad,nodo->der);
+		}
+	else{return false;}
+	}
 //Metodo que obtiene la altura
 int Arbol::altura(pnodoAbb nodo){
 	//Si esta vacio sale
@@ -282,6 +299,7 @@ Proceso* Arbol::buscarPorPrioridad(int prioridad,pnodoAbb nodo){
 	//Y hace recursividad a la derecha
 	return buscarPorPrioridad(prioridad,nodo->der);
 		}
+	
 }
 
 

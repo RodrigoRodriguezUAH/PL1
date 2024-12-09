@@ -350,6 +350,12 @@ void Gestor::eliminarPorPrioridad(){
 		if (ABB.esta(ABB.getRaiz(),Prioridad)){
 		eliminar->mostrar_proceso();
 		ABB.borrarElemento( eliminar,ABB.getRaiz());
+		if(eliminar->getTipo()==true){
+			normal.insertarInicio(eliminar);
+			}
+		else if(eliminar->getTipo()==false){
+			Treal.insertarInicio(eliminar);
+			}
 		cout<<"Arbol tras eliminar-> "<<endl;
 		ABB.dibujar();
 		}
